@@ -14,9 +14,9 @@
             @endphp
             <div class="col-sm-3 col-6">
                 <div class="card product-block">
-                    <a href="{{ url($p->product_slug) }}"><img src="{{ $image }}" alt="{{ $p->product_name }}" title="{{ $p->product_name }}" class="main-image lazy"></a>
+                    <a href="{{ url($p->product_slug) }}"><img data-src="{{ $image }}" class="lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" alt="{{ $p->product_name }}" title="{{ $p->product_name }}" class="main-image lazy"></a>
                     <div class="card-body">
-                        <h2 class="card-title"><a href="{{ url($p->product_slug) }}" title="{{ $p->product_name }}">{{ $p->product_name }}</a></h2>
+                        <h2 class="card-title" style="text-align: center;"><a href="{{ url($p->product_slug) }}" title="{{ $p->product_name }}">{{ $p->product_name }}</a></h2>
 
                         <div class="mt-2">
                             <div class="row">
@@ -31,9 +31,9 @@
                                         </div> -->
                                     </div>
                                 </div>
-                                <div class="col-sm-12 mb-2">
+                                <div class="col-sm-12 mb-2"> 
                                     <button type="button" class="btn btn-block btn-primary enquiry_btn" data-pid="{{ $p->product_id }}">
-                                        Enquiry Now <i class="icon-long-arrow-right"></i>
+                                        Enquiry Now</i>
                                     </button>
                                 </div>
                             </div>

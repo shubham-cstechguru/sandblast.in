@@ -48,24 +48,24 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
                         <div class="carousel-inner">
                             <a class="lightbox carousel-item active" data-fancybox="gallery" href="{{ url('imgs/product/'
                           .$record->product_image) }}">
-                                <img class="xzoom x-img" id="xzoom-default" src="{{ url('imgs/product/'
+                                <img class="xzoom x-img lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" id="xzoom-default" data-src="{{ url('imgs/product/'
                               .$record->product_image) }}" />
                             </a>
                             @foreach($gall as $images)
                             <a class="lightbox carousel-item" data-fancybox="gallery" href="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image) }}" data-fancybox="gallery">
-                                <img class="xzoom x-img" src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image) }}">
+                                <img class="xzoom x-im lazy-load" src="{{ url('imgs/ajax-loader.gif') }}"  data-src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image) }}">
                             </a>
                             @endforeach
                         </div>
                         <!-- Indicators -->
                         <div class="xzoom-thumbs carousel-indicators clearfix owl-carousel owl-carousel3 owl-theme">
-                            <div data-target="#demo2" data-slide-to="0" class="active item"><img class="xzoom-gallery" src="{{ url('imgs/product/'.$record->product_image_thumb) }}" xpreview="{{ url
+                            <div data-target="#demo2" data-slide-to="0" class="active item"><img class="xzoom-gallery lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" data-src="{{ url('imgs/product/'.$record->product_image_thumb) }}" xpreview="{{ url
                                       ('imgs/product/'.$record->product_image_thumb) }}" title="">
                             </div>
                             @php $i = 0; @endphp
                             @foreach($gall as $images)
                             @php $i++; @endphp
-                            <div data-target="#demo2" data-slide-to="{{ $i }}" class="item"><img class="xzoom-gallery" src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb) }}" xpreview="{{ url
+                            <div data-target="#demo2" data-slide-to="{{ $i }}" class="item"><img class="xzoom-gallery lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" data-src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb) }}" xpreview="{{ url
                                      ('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb) }}" title="">
                             </div>
                             @endforeach
@@ -76,7 +76,7 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
             </div>
 
             <div class="col-sm-7">
-                <div class="card">
+                <div class="card prod-desc-card">
                     <div class="card-body">
                         <h1 class="product-name mb-3">
                             {{ $record->product_name }}
@@ -97,7 +97,7 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
                             <!-- </div> -->
                             <div class="col-xs-12 col-md-6">
                                 <button type="button" class="btn btn-block btn-primary enquiry_btn" data-pid="{{ $record->product_id }}">
-                                    Enquiry Now <i class="icon-long-arrow-right"></i>
+                                    Enquiry Now</i>
                                 </button>
                             </div>
                         </div>
@@ -107,7 +107,7 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="card mb-3">
+                <div class="card prod-desc-card mb-3">
                     <div class="card-body">
                         <div class="product-desc">
                             {!! $record->product_description !!}
@@ -119,33 +119,32 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
 
         <div class="row mb-3">
             <div class="col-12">
-                <div class="card">
+                <div class="card enquiry-card">
+                    <div class="card-header">
+                        <h6 class="text-center">Enquiry Regarding {{ $record->product_name }}</h6>
+                    </div>
                     {{ Form::open(['url' => url('ajax/save_order') ,'id' => 'orderForm']) }}
                     <div class="card-body">
                         <input type="hidden" name="record[order_pid]" value="{{ $record->product_id }}">
                         <input type="hidden" name="record[order_qty]" value="1">
     
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="record[order_name]" value="" class="form-control name" required>
+                            <input type="text" name="record[order_name]" value="" class="form-control name" placeholder="Name" required>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Mobile No.</label>
-                                    <input type="tel" name="record[order_mobile]" value="" class="form-control mobile" required>
+                                    <input type="tel" name="record[order_mobile]" value="" class="form-control mobile" placeholder="Mobile Number" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Email ID</label>
-                                    <input type="email" name="record[order_email]" value="" class="form-control" required>
+                                    <input type="email" name="record[order_email]" value="" class="form-control" placeholder="Email" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Message</label>
-                            <textarea name="record[order_enquiry]" rows="3" class="form-control" required></textarea>
+                            <textarea name="record[order_enquiry]" rows="3" class="form-control" placeholder="Message" required></textarea>
                         </div>
                         <!-- <div class="row" style="display: none;">
                             <div class="col-sm-6">

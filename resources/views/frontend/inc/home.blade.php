@@ -8,8 +8,8 @@
 
         <div class="carousel-inner">
             @foreach($sliders as $k => $s)
-            <div class="carousel-item @if($k == 0) active @endif">
-                <img src="{{ url('imgs/sliders/'.$s->slider_image) }}" alt="{{ $s->slider_title }}">
+            <div class="carousel-item @if($k == 0) active @endif" style="text-align: center;">
+                <img data-src="{{ url('imgs/sliders/'.$s->slider_image) }}" class="lazy-load" alt="{{ $s->slider_title }}">
             </div>
             @endforeach
         </div>
@@ -23,7 +23,7 @@
     </div>
 </section>
 
-<section class="home-section">
+<section class="home-section category-section">
     <div class="container">
         <h3 style="padding: 10px 0px 10px 0px;padding-left: 10px; margin-top: 10px;">
             Browse by Category
@@ -37,13 +37,13 @@
                     <div class="category-img">
                         <a href="{{ url($c->category_slug) }}" title="{{ $c->category_name }}">
                             @if($c->category_image!='')
-                            <img src="{{ url('imgs/category/'.$c->category_image) }}" alt="{{ $c->category_name }}">
+                            <img data-src="{{ url('imgs/category/'.$c->category_image) }}" class="lazy-load"  alt="{{ $c->category_name }}">
                             @else
-                            <img src="{{ url('imgs/sandblast.jpg') }}" alt="{{ $c->category_name }}">
+                            <img data-src="{{ url('imgs/sandblast.jpg') }}" class="lazy-load"  alt="{{ $c->category_name }}">
                             @endif
                         </a>
                     </div>
-                    <div class="category-title" style="text-align:center;font-size:18px; font-weight:bold;padding:10px;">
+                    <div class="category-title" style="">
                         <a href="{{ url($c->category_slug) }}" title="{{ $c->category_name }}">
                             {{ $c->category_name }}
                         </a>
@@ -72,9 +72,9 @@
             @endphp
             <div class="item">
                 <div class="card product-block">
-                    <a href="{{ url('product/'.$p->product_slug) }}"><img src="{{ $image }}" alt="{{ $p->product_name }}" title="{{ $p->product_name }}" class="main-image lazy"></a>
+                    <a href="{{ url('product/'.$p->product_slug) }}"><img data-src="{{ $image }}" class="lazy-load"  alt="{{ $p->product_name }}" title="{{ $p->product_name }}" class="main-image lazy"></a>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="{{ url('product/'.$p->product_slug) }}" title="{{ $p->product_name }}">{{ $p->product_name }}</a></h5>
+                        <h5 class="card-title" style="text-align: center;"><a href="{{ url('product/'.$p->product_slug) }}" title="{{ $p->product_name }}">{{ $p->product_name }}</a></h5>
 
                         <div class="mt-2">
                             <div class="row">
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col-sm-12 mb-2">
                                     <button type="button" class="btn btn-block btn-primary enquiry_btn" data-pid="{{ $p->product_id }}">
-                                        Enquiry Now <i class="icon-long-arrow-right"></i>
+                                        Enquiry Now</i>
                                     </button>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                     <li>Portable Shot blasting machine manufacturers - Apply the unique Process to custom design and build each grit blasting system to meet the customer's Procise application needs. Shot blasting machine price also depend on size, used material, and purpose. Mainly, Shot blasting machine price varies according to size and material.</li>
                     <li>Sand blasting machine manufacturers, Distributor of abrasive blast machines, blast hoses, couplings, media valves, breathing air systems, nozzles, R/C systems etc.</li>
                 </ul>
-                <h2>
+                <h2 style="font-size: 20px;">
                     Shot Blasting Machine Manufacturers in India
                 </h2>
 

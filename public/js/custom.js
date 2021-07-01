@@ -108,7 +108,7 @@ $(document).ready(function () {
     // });
 
     $('#owl-carousel-cat').owlCarousel({
-        margin: 10,
+        margin: 20,
         responsive: {
             0: {
                 items: 1,
@@ -145,6 +145,8 @@ $(document).ready(function () {
         }
     });
 
+
+
     // $('#return').click(function () {
     //     $("html, body").animate({
     //         scrollTop: 0
@@ -152,6 +154,17 @@ $(document).ready(function () {
     //     return false;
     // });
 
+});
+
+$(window).on('load', function () {
+    $('.lazy-load').each(function (event) {
+        let self = $(this);
+        self.attr('src', self.data('src')).removeAttr('data-src');
+
+        self.on('load', function () {
+            $(this).removeClass('lazy-load');
+        });
+    });
 });
 
 function readURL(input, target) {

@@ -8,8 +8,8 @@
 
         <div class="carousel-inner">
             <?php $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="carousel-item <?php if($k == 0): ?> active <?php endif; ?>">
-                <img src="<?php echo e(url('imgs/sliders/'.$s->slider_image)); ?>" alt="<?php echo e($s->slider_title); ?>">
+            <div class="carousel-item <?php if($k == 0): ?> active <?php endif; ?>" style="text-align: center;">
+                <img data-src="<?php echo e(url('imgs/sliders/'.$s->slider_image)); ?>" class="lazy-load" alt="<?php echo e($s->slider_title); ?>">
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
@@ -23,7 +23,7 @@
     </div>
 </section>
 
-<section class="home-section">
+<section class="home-section category-section">
     <div class="container">
         <h3 style="padding: 10px 0px 10px 0px;padding-left: 10px; margin-top: 10px;">
             Browse by Category
@@ -37,13 +37,13 @@
                     <div class="category-img">
                         <a href="<?php echo e(url($c->category_slug)); ?>" title="<?php echo e($c->category_name); ?>">
                             <?php if($c->category_image!=''): ?>
-                            <img src="<?php echo e(url('imgs/category/'.$c->category_image)); ?>" alt="<?php echo e($c->category_name); ?>">
+                            <img data-src="<?php echo e(url('imgs/category/'.$c->category_image)); ?>" class="lazy-load"  alt="<?php echo e($c->category_name); ?>">
                             <?php else: ?>
-                            <img src="<?php echo e(url('imgs/sandblast.jpg')); ?>" alt="<?php echo e($c->category_name); ?>">
+                            <img data-src="<?php echo e(url('imgs/sandblast.jpg')); ?>" class="lazy-load"  alt="<?php echo e($c->category_name); ?>">
                             <?php endif; ?>
                         </a>
                     </div>
-                    <div class="category-title" style="text-align:center;font-size:18px; font-weight:bold;padding:10px;">
+                    <div class="category-title" style="">
                         <a href="<?php echo e(url($c->category_slug)); ?>" title="<?php echo e($c->category_name); ?>">
                             <?php echo e($c->category_name); ?>
 
@@ -74,9 +74,9 @@
             ?>
             <div class="item">
                 <div class="card product-block">
-                    <a href="<?php echo e(url('product/'.$p->product_slug)); ?>"><img src="<?php echo e($image); ?>" alt="<?php echo e($p->product_name); ?>" title="<?php echo e($p->product_name); ?>" class="main-image lazy"></a>
+                    <a href="<?php echo e(url('product/'.$p->product_slug)); ?>"><img data-src="<?php echo e($image); ?>" class="lazy-load"  alt="<?php echo e($p->product_name); ?>" title="<?php echo e($p->product_name); ?>" class="main-image lazy"></a>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="<?php echo e(url('product/'.$p->product_slug)); ?>" title="<?php echo e($p->product_name); ?>"><?php echo e($p->product_name); ?></a></h5>
+                        <h5 class="card-title" style="text-align: center;"><a href="<?php echo e(url('product/'.$p->product_slug)); ?>" title="<?php echo e($p->product_name); ?>"><?php echo e($p->product_name); ?></a></h5>
 
                         <div class="mt-2">
                             <div class="row">
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="col-sm-12 mb-2">
                                     <button type="button" class="btn btn-block btn-primary enquiry_btn" data-pid="<?php echo e($p->product_id); ?>">
-                                        Enquiry Now <i class="icon-long-arrow-right"></i>
+                                        Enquiry Now</i>
                                     </button>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                     <li>Portable Shot blasting machine manufacturers - Apply the unique Process to custom design and build each grit blasting system to meet the customer's Procise application needs. Shot blasting machine price also depend on size, used material, and purpose. Mainly, Shot blasting machine price varies according to size and material.</li>
                     <li>Sand blasting machine manufacturers, Distributor of abrasive blast machines, blast hoses, couplings, media valves, breathing air systems, nozzles, R/C systems etc.</li>
                 </ul>
-                <h2>
+                <h2 style="font-size: 20px;">
                     Shot Blasting Machine Manufacturers in India
                 </h2>
 

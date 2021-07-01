@@ -2,6 +2,10 @@
 $mcategories = App\Model\Category::with(['scats' => function($q) {
 $q->where('category_is_deleted', 'N');
 }])->where('category_is_deleted', 'N')->where('category_parent', 0)->get();
+
+$title = DB::table('settings')->get();
+$name = $title[0]->setting_title;
+$fav = $title[0]->setting_favicon;
 @endphp
 
 <!DOCTYPE html lang="en">
@@ -13,20 +17,22 @@ $q->where('category_is_deleted', 'N');
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ empty($meta['title']) ? $site->setting_title : $meta['title'] }}</title>
 
+    <link rel="icon" type="image/png" href="{{ url('imgs/'. $fav) }}" />
+
     @if(!empty($meta))
     <meta name="keywords" content="{{ @$meta['keywords'] }}">
     <meta name="description" content="{{ @$meta['description'] }}">
 
     <meta property="og:type" content="website" />
     <meta property='og:locale' content='en_US' />
-    <meta property="og:site_name" content="Sand Blast" />
+    <meta property="og:site_name" content="{{ @$name }}" />
     <meta property="og:title" content="{{ empty($meta['title']) ? $site->setting_title : $meta['title'] }}" />
     <meta property="og:description" content="{{ @$meta['description'] }}" />
     <meta property="og:image" content="{{ url('imgs/sliders/3.jpg') }}" />
     <link rel="canonical" href="{{url()->current()}}" />
 
     <meta name="twitter:card" content="Sand Blasting Machine | Shot Blasting Machine" />
-    <meta name="twitter:site" content="Sand Blast" />
+    <meta name="twitter:site" content="{{ @$name }}" />
     <meta name="twitter:title" content="{{ empty($meta['title']) ? $site->setting_title : $meta['title'] }}" />
     <meta name="twitter:description" content="{{ @$meta['description'] }}" />
     <meta name="twitter:image" content="{{ url('imgs/sliders/3.jpg') }}" />
@@ -82,91 +88,6 @@ $q->where('category_is_deleted', 'N');
     {{ HTML::style('css/style.css') }}
 
     <style>
-        .sticky-container {
-            /*background-color: #333;*/
-            padding: 0px;
-            margin: 0px;
-            position: fixed;
-            right: -124px;
-            top: 230px;
-            width: 200px;
-            z-index: 99999;
-
-        }
-
-        /* style p when hover li */
-        .sticky-first li:hover p {
-            float: right;
-        }
-
-        .sticky li {
-            list-style-type: none;
-            background-color: #333;
-            color: #efefef;
-            height: 43px;
-            padding: 0px;
-            margin: 0px 0px 1px 0px;
-            -webkit-transition: all 0.25s ease-in-out;
-            -moz-transition: all 0.25s ease-in-out;
-            -o-transition: all 0.25s ease-in-out;
-            transition: all 0.25s ease-in-out;
-            cursor: pointer;
-            padding: 0px 10px;
-
-        }
-
-        .sticky li a {
-            color: #fff;
-        }
-
-        .sticky li:hover {
-            margin-left: -115px;
-            /*-webkit-transform: translateX(-115px);
-		-moz-transform: translateX(-115px);
-		-o-transform: translateX(-115px);
-		-ms-transform: translateX(-115px);
-		transform:translateX(-115px);*/
-            /*background-color: #8e44ad;*/
-
-        }
-
-        .sticky li img {
-            float: left;
-            margin: 5px 5px;
-            margin-right: 10px;
-
-        }
-
-        .sticky li p {
-            padding: 0px;
-            margin: 0px;
-            text-transform: uppercase;
-            line-height: 43px;
-
-        }
-
-        .sticky li i {
-            font-size: 24px;
-            margin-top: 8px;
-            display: inline-block;
-
-        }
-
-        .header-top a {
-            color: #fff;
-            transition: all .5s;
-            font-weight: bold;
-        }
-
-        .header-top a i {
-            color: #05c5b6;
-        }
-
-        .header-top a:hover {
-            text-decoration: none;
-            color: #05c5b6;
-
-        }
     </style>
 </head>
 
@@ -176,13 +97,15 @@ $q->where('category_is_deleted', 'N');
         <div class="header-top" id="jp_header">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-7 d-none d-sm-block">
-                        <a href="{{ url('/') }}"><img src="{{ url('imgs/logo.png') }}" alt="sand blast logo"> </a>
+                    <div class="col-sm-12 col-md-6 col-lg-7 d-none d-lg-block">
+                        @if($title[0]->setting_logo)
+                        <a href="{{ url('/') }}"><img src="{{ url('imgs/'. $title[0]->setting_logo) }}" alt="sand blast logo"> </a>
+                        @endif
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-5 d-flex justify-content-between" style="align-items: center;">
-                        <a href="tel:+917728877775"><i class="icon-call"></i> +91 7728877775</a>
+                    <div class="col-sm-12 col-md-12 col-lg-5 d-flex justify-content-between" style="align-items: center;">
+                        <a href="tel:+91{{ $title[0]->setting_mobile }}"><i class="icon-call"></i> +91 {{ $title[0]->setting_mobile }}</a>
                         &nbsp; &nbsp;
-                        <a href="mailto:info@sandblast.in"><i class="icon-email"></i> info@sandblast.in</a>
+                        <a href="mailto:{{ @$title[0]->setting_contact_email }}"><i class="icon-email"></i> {{ $title[0]->setting_contact_email }} </a>
                     </div>
                 </div>
             </div>
@@ -190,10 +113,10 @@ $q->where('category_is_deleted', 'N');
         <div class="header-nav">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-8 d-block d-sm-none" style="margin: 5px 0 0 0">
-                        <a href="{{ url('/') }}"><img src="{{ url('imgs/logo.png') }}" alt="sand blast logo"> </a>
+                    <div class="col-8 d-block d-lg-none" style="margin: 5px 0 0 0">
+                        <a href="{{ url('/') }}"><img src="{{ url('imgs/old-logo.png') }}" alt="sand blast logo"> </a>
                     </div>
-                    <div class="col-4 d-sm-none d-lg-none d-md-none clearfix">
+                    <div class="col-4 d-lg-none clearfix">
                         <a href="#" class="nav-icon float-right"><i class="icon-navicon"></i></a>
                     </div>
                     <div class="col-sm-12">
@@ -207,7 +130,7 @@ $q->where('category_is_deleted', 'N');
                                 @if(!empty($mc->scats->count()))
                                 <ul>
                                     @foreach($mc->scats as $sc)
-                                    <li><a style="  overflow: hidden;  max-width: 45ch;  text-overflow: ellipsis;  white-space: nowrap;" href="{{ url($mc->category_slug.'/'.$sc->category_slug) }}">{{ $sc->category_name }}</a></li>
+                                    <li><a style="  overflow: hidden;  max-width: 25ch;  text-overflow: ellipsis;  white-space: nowrap;" href="{{ url($mc->category_slug.'/'.$sc->category_slug) }}">{{ $sc->category_name }}</a></li>
                                     @endforeach
                                 </ul>
                                 @endif

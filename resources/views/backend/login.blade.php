@@ -1,3 +1,10 @@
+@php
+$title = DB::table('settings')->get();
+$name = $title[0]->setting_title;
+$fav = $title[0]->setting_favicon;
+$logo = $title[0]->setting_logo;
+@endphp
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,7 +16,7 @@
 		{{ HTML::style('icomoon/style.css') }}
 		{{ HTML::style('admin/css/style.css') }}
 
-		<link rel="icon" href="{{ url('imgs/ea_logo.ico') }}">
+		<link rel="icon" href="{{ url('imgs/'. $fav) }}">
 	</head>
 	<body>
 		<section class="full-section">
@@ -20,7 +27,7 @@
 				<form id="loginForm" action="{{ url('rt-admin/ajax/user_login') }}" method="post">
 					@csrf
 					<div class="text-center form-group">
-						<img class="login_img" src="{{ url('imgs/logo.png') }}">
+						<img class="login_img" src="{{ url('imgs/'. $logo) }}">
 					</div>
 					<div class="form-msg"></div>
 					<div class="form-group">
