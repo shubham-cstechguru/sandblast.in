@@ -108,9 +108,9 @@
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 <?php endif; ?>
 <section id="home_content">
-    <div class="container">
-        <div class="card text-justify mb-3">
-            <div class="card-body">
+    <div class="container pt-2">
+        <div class="card text-justify">
+            <div class="card-body m-0 p-0">
                 <h1 class="mt-0"> Sand Blasting Machine</h1>
                 Airo Shot blasting machine manufacturers are specialize in Manufacturing of Sand Blating Machine and Shot Blasting machine at affordable price. Shot Blasting machine manufacturers are customized and slandered type portable shot blasting Equipments which are used to clean the surface. Sand blasting machine manufacturers provide Portable Sand Blasting Machine with various type portable blasting equipment like Blast Hopper, Blast Rooms, Blast Cabinet etc. Airo Shot blasting manufacture wide range of portable shot blasting machine / sand blasting machine for various applications to meet the requirements of different sectors. We also manufacture vibratory finishing shot blasting machine, sand blasting chambers and automated sand & shot blasting machine.
 

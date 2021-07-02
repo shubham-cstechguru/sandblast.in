@@ -1,10 +1,10 @@
 <section class="inner-part">
-	<h3  class="pb-2">Add Product</h3>
+	<h3 class="pb-2">Add Product</h3>
 	<div class="divider"></div>
 	@if (\Session::has('success'))
-	    <div class="alert alert-success">
-		    {!! \Session::get('success') !!}</li>
-		</div>
+	<div class="alert alert-success">
+		{!! \Session::get('success') !!}</li>
+	</div>
 	@endif
 	<!-- inner part -->
 	<form class="change_pass" method="post" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
 					<div class="category">
 						<label style="font-weight: bold">Basic Information</label>
 						<div class="divider mb-3"></div>
-						
+
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="form-group">
@@ -36,23 +36,23 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label >Category</label>
-									<select name="record[product_category]"class="form-control mcategory" data-target="#book_subcategory">
-			                            <option value="">Select Category</option>
-			                            @foreach($category as $cat)
-			                            <option value="{{ $cat->category_id }}" @if(@$edit->product_category == $cat->category_id ) selected @endif>{{ $cat->category_name }}</option>
-			                            @endforeach
-	                            	</select>
+									<label>Category</label>
+									<select name="record[product_category]" class="form-control mcategory" data-target="#book_subcategory">
+										<option value="">Select Category</option>
+										@foreach($category as $cat)
+										<option value="{{ $cat->category_id }}" @if(@$edit->product_category == $cat->category_id ) selected @endif>{{ $cat->category_name }}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label>Subcategory</label>
 									<select name="record[product_subcategory]" id="book_subcategory" class="form-control">
-	                                    <option value="">Subcategory</option>
-	                                    @foreach($subcategories as $subcat)
-	                                    <option value="{{ $subcat->category_id }}" @if(@$edit->product_subcategory == $subcat->category_id ) selected @endif>{{ $subcat->category_name }}</option>
-	                                    @endforeach
+										<option value="">Subcategory</option>
+										@foreach($subcategories as $subcat)
+										<option value="{{ $subcat->category_id }}" @if(@$edit->product_subcategory == $subcat->category_id ) selected @endif>{{ $subcat->category_name }}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>
@@ -122,6 +122,15 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="content-part">
+						<div class="category">
+							<div class="form-group">
+								<label>Product Specification table</label>
+								<textarea rows="10" name="record[product_specification]" placeholder="Specification" class="form-control editor">{{ @$edit->product_specification }}</textarea>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-4">
@@ -132,16 +141,16 @@
 					</div>
 					<div class="category category-inner">
 						<h4>Upload Image</h4>
-							<div class="divider"></div>
+						<div class="divider"></div>
 						<div class="file-upload">
 
-						  <div class="col image-upload-wrap">
-				           <label class="file-upload form-group" style="padding: 0px; border: 1px solid #ccc;">
-				            <img class="file-upload-image"  src="{{ !empty($edit->product_image) ? url('imgs/product/'.$edit->product_image) : url('imgs/no-image.png') }}">
-				            <input type="file" class="file-upload-input" name="product_image" accept="image/*" id="productImage" >
-				            </label>
-			            </div>
-						  <label for="productImage" class="file-upload-btn btn btn-info btn-block">Select Image</label>
+							<div class="col image-upload-wrap">
+								<label class="file-upload form-group" style="padding: 0px; border: 1px solid #ccc;">
+									<img class="file-upload-image" src="{{ !empty($edit->product_image) ? url('imgs/product/'.$edit->product_image) : url('imgs/no-image.png') }}">
+									<input type="file" class="file-upload-input" name="product_image" accept="image/*" id="productImage">
+								</label>
+							</div>
+							<label for="productImage" class="file-upload-btn btn btn-info btn-block">Select Image</label>
 						</div>
 					</div>
 				</div>
@@ -153,16 +162,16 @@
 					</div>
 					<div class="row" id="gallery_images">
 						@if(!empty($edit))
-							@foreach($gallary as $gall)
-							<div class="col-3">
-								<label class="file-upload form-group addgallary" style="padding: 0px; border: 1px solid #ccc;">
-									<a href="#remove_image" data-url="{{ url('rt-admin/product/add/'.$edit->product_id.'/?remove_id='.$gall->pimage_id) }}" class="close" title="Remove">
-										<i class="icon-cross"></i>
-									</a>
-									<img src="{{ url('imgs/product/'.$id.'/'.$gall->pimage_image_thumb) }}">
-								</label>
-							</div>
-							@endforeach
+						@foreach($gallary as $gall)
+						<div class="col-3">
+							<label class="file-upload form-group addgallary" style="padding: 0px; border: 1px solid #ccc;">
+								<a href="#remove_image" data-url="{{ url('rt-admin/product/add/'.$edit->product_id.'/?remove_id='.$gall->pimage_id) }}" class="close" title="Remove">
+									<i class="icon-cross"></i>
+								</a>
+								<img src="{{ url('imgs/product/'.$id.'/'.$gall->pimage_image_thumb) }}">
+							</label>
+						</div>
+						@endforeach
 						@endif
 					</div>
 				</div>

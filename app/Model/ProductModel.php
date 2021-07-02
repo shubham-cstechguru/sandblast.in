@@ -21,4 +21,7 @@ class ProductModel extends Model {
     public function city() {
         return $this->hasOne('App\Model\CityModel', 'city_id', 'product_city');
     }
+    public function country() {
+        return $this->hasOne('App\Model\CountryModel', 'country_id', 'product_country');
+    }
 }

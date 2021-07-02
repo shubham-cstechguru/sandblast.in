@@ -30,13 +30,13 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
 <section class="product-whole-information mt-3 product-block">
     <div class="container">
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb px-0">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="<?php echo e(url($record->cat->category_slug)); ?>"><?php echo e(ucwords(strtolower($record->cat->category_name))); ?></a></li>
+            <ol class="breadcrumb bcrumb px-0">
+                <li class="breadcrumb-item bcrumb-i"><a href="/">Home</a></li>
+                <li class="breadcrumb-item bcrumb-i"><a href="<?php echo e(url($record->cat->category_slug)); ?>"><?php echo e(ucwords(strtolower($record->cat->category_name))); ?></a></li>
                 <?php if(!empty($record->scat->category_name)): ?>
-                <li class="breadcrumb-item"><a href="<?php echo e(url($record->cat->category_slug.'/'.$record->scat->category_slug)); ?>"><?php echo e($record->scat->category_name); ?></a></li>
+                <li class="breadcrumb-item bcrumb-i"><a href="<?php echo e(url($record->cat->category_slug.'/'.$record->scat->category_slug)); ?>"><?php echo e($record->scat->category_name); ?></a></li>
                 <?php endif; ?>
-                <li class="breadcrumb-item active" aria-current="page"><?php echo e($record->product_name); ?></li>
+                <li class="breadcrumb-item bcrumb-i active" aria-current="page"><?php echo e($record->product_name); ?></li>
             </ol>
         </nav>
 
@@ -76,14 +76,19 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
             </div>
 
             <div class="col-sm-7">
-                <div class="card prod-desc-card">
+                <div class="card prod-desc-card mb-3">
                     <div class="card-body">
                         <h1 class="product-name mb-3">
                             <?php echo e($record->product_name); ?>
 
                         </h1>
 
-                        <div class="row mb-3">
+                        <div class="prod-spec">
+                            <?php echo $record->product_specification; ?>
+
+                        </div>
+
+                        <div class="row my-3">
                             <!-- <div class="col-4"> -->
                                <!-- <label class="d-block">Qty</label> -->
                             <div class="product-qty" style="display: none;">

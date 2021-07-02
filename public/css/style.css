@@ -17,14 +17,15 @@ img {
     max-width: 100%;
 }
 
-/* .header-nav {
-    padding: 10px 0;
-} */
+.header-nav {
+    background: #ecf0f1;
+}
 
 a {
     color: inherit;
     text-decoration: none !important;
 }
+
 b, strong {
     font-weight: 700 !important;
 }
@@ -145,6 +146,14 @@ table th, table td {
     width: 100%;
 }
 
+#home_content {
+    background: #fff;
+}
+
+#home_content .card {
+    border: none;
+}
+
 #home_content .card-body {
     line-height: 30px;
 }
@@ -156,9 +165,9 @@ table th, table td {
 }
 
 .city_handle {
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
+    font-size: 13px;
+    /* color: #fff; */
+    color: #05c5b6;
 }
 
 .home-section .owl-nav {
@@ -269,14 +278,19 @@ table th, table td {
     color: inherit;
 }
 
-.breadcrumb {
+.bcrumb {
     /* background: #fff; */
     background: none;
     background-color: none !important;
 }
 
-.breadcrumb a {
+.bcrumb a {
     color: #05c5b6;
+}
+
+.prod-spec {
+    max-height: 490px;
+    overflow: auto;
 }
 
 .xzoom-container .carousel-inner {
@@ -363,6 +377,14 @@ table th, table td {
     font-weight: 600 !important;
 }
 
+.enquiry-card h6 {
+    text-transform: lowercase;
+}
+
+.enquiry-card h6:first-letter {
+    text-transform: uppercase !important;
+}
+
 #home-slider .lazy-load {
     display: block;
     background: #fff url('../imgs/ajax-loader.gif') center center no-repeat;
@@ -378,38 +400,67 @@ table th, table td {
     width: 100%;
 } */
 
-.footer-content{
+.footer-content {
     color: #fff;
 }
-.footer-list{
+
+.footer-list {
     margin: 11px 0 0 0;
     color: #fff;
 }
+
 .footer-list h1 {
     font-weight: 500;
     letter-spacing: 2px;
 }
+
 .footer-list ul li {
     padding: 2px 0;
     font-size: 16px;
     transition: 0.5s ease;
 }
+
 .footer-list a i {
     padding: 5px;
     font-size: 11px;
     border: 2px solid;
     border-radius: 50%;
 }
+
 .footer-list ul li:hover {
     color: #05c5b6;
     padding: 2px 12px;
 }
-.footer-list ul li:hover a{
+
+.city_handle i {
+    font-size: 17px;
+}
+
+.footer-list ul li:hover a {
     color: #05c5b6;
     border-bottom: none;
 }
+
 .bg-dark {
     background-color: #283883 !important;
+}
+
+.foot-c {
+    background-color: #fff;
+    color: #303030;
+}
+
+.foot-c .btn {
+    border: 1px solid #303030;
+}
+
+.foot-c li a:hover {
+    color: #283883;
+}
+
+.foot-c .btn:hover {
+    color: #283883;
+    border: 1px solid #283883;
 }
 
 @media screen and (min-width: 992px) {
@@ -480,6 +531,11 @@ table th, table td {
     .header-top a:hover {
         text-decoration: none;
         color: #05c5b6;
+    }
+    .header-top {
+        background: #283883;
+        padding: 0px 0 !important;
+        color: #fff;
     }
 }
 
@@ -573,25 +629,6 @@ table th, table td {
     #product-section .col-6:nth-child(even) {
         padding-left: 7.5px;
     }
-    .product-block {
-        margin-bottom: 15px;
-    }
-    .product-block .prod-desc-card {
-        background: none !important;
-        border: none !important;
-    }
-    .product-block .card-body {
-        padding: 5px;
-    }
-    .product-block h5.card-title {
-        font-size: 14px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .product-block .main-image {
-        height: 150px;
-    }
     .header-top {
         font-size: 12px;
         text-align: center;
@@ -652,12 +689,12 @@ table th, table td {
         margin: 0;
         margin-bottom: 16px;
     }
-    .breadcrumb {
+    .bcrumb {
         font-size: 14px;
         flex-wrap: nowrap !important;
         background-color: none !important;
     }
-    li.breadcrumb-item {
+    li.bcrumb-i {
         overflow: hidden;
         min-width: 5ch;
         max-width: 45ch;
@@ -669,12 +706,37 @@ table th, table td {
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-    /* #home-slider {
-        height: 265px !important;
-        object-fit: cover !important;
+@media screen and (max-width: 576px) {
+    .product-block {
+        margin-bottom: 15px;
     }
-    #home-slider img {
-        height: 100% !important;
-    } */
+    .product-block .prod-desc-card {
+        background: none !important;
+        border: none !important;
+    }
+    .product-block .card-body {
+        padding: 5px;
+    }
+    .product-block h5.card-title {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .product-block .main-image {
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .prod-spec{
+        max-height: 290px;
+    }
+}
+
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+    .prod-spec{
+        max-height: 180px;
+    }
 }

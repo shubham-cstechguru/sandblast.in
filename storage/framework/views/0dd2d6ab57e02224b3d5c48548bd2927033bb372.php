@@ -1,17 +1,29 @@
 <?php
 $cities = \App\Model\CityModel::select('city_slug', 'city_name')->get()->toArray();
+$countries = \App\Model\CountryModel::select('country_slug','country_name')->get()->toArray();
 $y = date('Y');
 $title = DB::table('settings')->get();
 $name = $title[0]->setting_title;
 ?>
-<footer class="bg-dark py-4">
-    <!-- <div class="container">
-        <p class="py-2 city_handle">City</p>
-        <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <a href="city/<?php echo e($c['city_slug']); ?>" class="btn btn-outline-light"> <?php echo e($c['city_name']); ?></a>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-    </div> -->
+<div class="foot-c py-3">
+    <div class="container city_handle">
+        <ul class="list-unstyled breadcrumb p-0 mx-0" style="background: none;">
+            <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <li class="breadcrumb-item mr-2"><a href="city/<?php echo e($c['city_slug']); ?>"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i><?php echo e($c['city_name']); ?></a></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ul>
+    </div>
+    <div class="container city_handle">
+        <ul class="list-unstyled breadcrumb p-0 mx-0" style="background: none; line-height: 32px;">
+            <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <li class="breadcrumb-item mr-2"><a href="country/<?php echo e($c['country_slug']); ?>"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i><?php echo e($c['country_name']); ?></a></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ul>
+    </div>
+</div>
+<footer class="bg-dark py-4">
+
 
     <div class="container">
         <div class="row">
@@ -26,12 +38,12 @@ $name = $title[0]->setting_title;
                 </div>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-3 footer-list">
-                <h1 class="text-left lead"><b>Cities</b></h1>
-                <ul class="list-unstyled" style="line-height: 32px;">
+                <h1 class="text-left lead"><b>Quick Links</b></h1>
+                <!-- <ul class="list-unstyled" style="line-height: 32px;">
                     <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li><a href="city/<?php echo e($c['city_slug']); ?>"><i class="icon-location mr-2" aria-hidden="true"></i><?php echo e($c['city_name']); ?></a></li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </ul>
+                </ul> -->
             </div>
             <div class="col-sm-6 col-md-6 col-lg-4 footer-list">
                 <?php if($title[0]->setting_mobile != '' || $title[0]->setting_whatsapp != '' || $title[0]->setting_contact_email != ''): ?>

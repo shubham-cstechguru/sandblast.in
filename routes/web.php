@@ -32,6 +32,7 @@ Route::any('rt-admin/slider/add/{nom?}', 'admin\Slider@add');
 Route::any('rt-admin/product', 'admin\Product@index');
 Route::any('rt-admin/product/add/{nom?}', 'admin\Product@add');
 Route::any('rt-admin/product-city', 'admin\ProductCity@index');
+Route::any('rt-admin/product-country', 'admin\ProductCountry@index');
 Route::any('rt-admin/city', 'admin\City@index');
 Route::any('rt-admin/orders', 'admin\Orders@index');
 Route::any('rt-admin/order/single/{nom?}', 'admin\Orders@view');
@@ -123,6 +124,7 @@ Route::get('search', 'ProductController@index');
 Route::get('page/{slug}', 'PageController@index');
 Route::get('generate-sitemap', 'SitemapController@index');
 Route::get('city/{city}', 'ProductController@index');
+Route::get('country/{country}', 'ProductController@index');
 Route::get('city/{city}/{slug}', 'ProductController@single');
 Route::get('{mcategory}/{scategory?}', 'ProductController@index');
 

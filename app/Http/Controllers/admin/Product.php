@@ -26,6 +26,7 @@ class Product extends BaseController {
         $input = $request->input();
 
         $city= DB::table('cities')->where('city_is_deleted', 'N')->get();
+        $country= DB::table('countries')->where('country_is_deleted', 'N')->get();
         // CITY LIST
 
         if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['status'])) {
@@ -66,9 +67,8 @@ class Product extends BaseController {
         }
 
 
-
     	$page 	= "product";
-    	$data 	= compact('page','records', 'city');
+    	$data 	= compact('page','records', 'city', 'country');
     	return view('backend/layout', $data);
     }
 

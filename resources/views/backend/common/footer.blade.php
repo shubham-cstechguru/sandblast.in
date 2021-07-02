@@ -57,8 +57,14 @@
 
 				function select_city(id){
 						  console.log(id);
-							$("#product_id").val(id);
+							$("#product_city_id").val(id);
 						 $('#add_city_post').modal();
+				}
+
+				function select_country(id){
+						  console.log(id);
+							$("#product_country_id").val(id);
+						 $('#add_country_post').modal();
 				}
 	    </script>
 <script type="text/javascript">
@@ -70,6 +76,24 @@ $(document).ready(function() {
 
 		$.ajax({
 			url: 'product-city',
+			headers:token,
+			type: 'POST',
+			data: form.serialize(),
+			success: function(res) {
+				     window.location.reload();  
+			}
+		});
+	});
+});
+
+$(document).ready(function() {
+	$(document).on('submit', '#productCountryForm', function(e) {
+		e.preventDefault();
+		var form = $(this),
+				token = $('[name=csrf-token]').attr('content');
+
+		$.ajax({
+			url: 'product-country',
 			headers:token,
 			type: 'POST',
 			data: form.serialize(),
