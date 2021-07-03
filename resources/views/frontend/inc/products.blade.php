@@ -1,9 +1,10 @@
 <section id="product-section">
     <div class="container">
+    @if(!empty($category[0]))
        <div class="card mb-2">
             <div class="card-body pb-1 pt-3" id="my_content">
-                <h1>{{ $category[0]['category_name'] }}</h1>
-                {!! $category[0]['top_content'] !!}
+                <h1>{{ $category[0]['category_name'] ?? '' }}</h1>
+                {!! $category[0]['top_content'] ?? '' !!}
             </div>
         </div>
         @if(!$products->isEmpty())
@@ -50,8 +51,11 @@
         @endif
         <div class="card mb-3">
             <div class="card-body pb-1 pt-3" id="my_content">
-                {!! $category[0]['bottom_content'] !!}
+                {!! $category[0]['bottom_content'] ?? '' !!}
             </div>
         </div>
+        @else
+        @include('errors.404')
+        @endif
     </div>
 </section>

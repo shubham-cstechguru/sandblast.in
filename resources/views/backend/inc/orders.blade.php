@@ -73,9 +73,9 @@
 										<th>Name</th>
 										<th>Mobile</th>
 										<th>Email</th>
-										<th>Address</th>
-										<th>State</th>
-										<th>City</th>
+										<th>Message</th>
+										<th>Status</th>
+
 									</tr>
 								</thead>
 								<tbody>
@@ -97,11 +97,10 @@
 										<td>{{ ++$sn }}.</td>
 										<td><a href="{{ url('rt-admin/order/single/'.$rec->order_id) }}" class="">{{ sprintf("#BURG%06d",$rec->order_id) }}</a></td>
 										<td>{{ $rec->order_name }}</td>
-										<td>{{ $rec->order_mobile }}</td>
-										<td>{{ $rec->order_email }}</td>
-										<td>{{ $rec->order_address }}</td>
-										<td>{{ $rec->order_state }}</td>
-										<td>{{ $rec->order_city }}</td>
+										<td><a href="tel: {{ $rec->order_mobile }}">{{ $rec->order_mobile }}</a></td>
+										<td><a href="mailto: {{ $rec->order_email }}">{{ $rec->order_email }}</a></td>
+										<td style="white-space: nowrap;  overflow: hidden; min-width: 5ch;  max-width: 25ch; text-overflow: ellipsis; text-align: left;">{{ $rec->order_enquiry }}</td>
+										<td><a class="@if($rec->order_status == 'pending') text-danger @elseif($rec->order_status == 'complete') text-success @endif" href="javascript:void(0)" onclick=changestatus({{ $rec->order_id }})> <i class="icon-circle"></i> </a></td>
 									</tr>
 									@endforeach
 								</tbody>

@@ -73,9 +73,9 @@
 										<th>Name</th>
 										<th>Mobile</th>
 										<th>Email</th>
-										<th>Address</th>
-										<th>State</th>
-										<th>City</th>
+										<th>Message</th>
+										<th>Status</th>
+
 									</tr>
 								</thead>
 								<tbody>
@@ -97,11 +97,10 @@
 										<td><?php echo e(++$sn); ?>.</td>
 										<td><a href="<?php echo e(url('rt-admin/order/single/'.$rec->order_id)); ?>" class=""><?php echo e(sprintf("#BURG%06d",$rec->order_id)); ?></a></td>
 										<td><?php echo e($rec->order_name); ?></td>
-										<td><?php echo e($rec->order_mobile); ?></td>
-										<td><?php echo e($rec->order_email); ?></td>
-										<td><?php echo e($rec->order_address); ?></td>
-										<td><?php echo e($rec->order_state); ?></td>
-										<td><?php echo e($rec->order_city); ?></td>
+										<td><a href="tel: <?php echo e($rec->order_mobile); ?>"><?php echo e($rec->order_mobile); ?></a></td>
+										<td><a href="mailto: <?php echo e($rec->order_email); ?>"><?php echo e($rec->order_email); ?></a></td>
+										<td style="white-space: nowrap;  overflow: hidden; min-width: 5ch;  max-width: 25ch; text-overflow: ellipsis; text-align: left;"><?php echo e($rec->order_enquiry); ?></td>
+										<td><a class="<?php if($rec->order_status == 'pending'): ?> text-danger <?php elseif($rec->order_status == 'complete'): ?> text-success <?php endif; ?>" href="javascript:void(0)" onclick=changestatus(<?php echo e($rec->order_id); ?>)> <i class="icon-circle"></i> </a></td>
 									</tr>
 									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 								</tbody>

@@ -1,9 +1,10 @@
 <section id="product-section">
     <div class="container">
+    <?php if(!empty($category[0])): ?>
        <div class="card mb-2">
             <div class="card-body pb-1 pt-3" id="my_content">
-                <h1><?php echo e($category[0]['category_name']); ?></h1>
-                <?php echo $category[0]['top_content']; ?>
+                <h1><?php echo e($category[0]['category_name'] ?? ''); ?></h1>
+                <?php echo $category[0]['top_content'] ?? ''; ?>
 
             </div>
         </div>
@@ -51,10 +52,13 @@
         <?php endif; ?>
         <div class="card mb-3">
             <div class="card-body pb-1 pt-3" id="my_content">
-                <?php echo $category[0]['bottom_content']; ?>
+                <?php echo $category[0]['bottom_content'] ?? ''; ?>
 
             </div>
         </div>
+        <?php else: ?>
+        <?php echo $__env->make('errors.404', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php endif; ?>
     </div>
 </section>
 <?php /**PATH D:\work\asb\web work\sandblast.in\resources\views/frontend/inc/products.blade.php ENDPATH**/ ?>

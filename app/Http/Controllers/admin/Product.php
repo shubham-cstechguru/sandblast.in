@@ -79,7 +79,7 @@ class Product extends BaseController {
         $edit = $specs = $subcategories = $gallary = array();
         if(!empty($id)) {
             $edit   = ProductModel::find($id);
-            $specs  = unserialize($edit->product_specification);
+            $specs  = $edit->product_specification;
 
             if(!empty($edit->product_category)) {
                 $subcategories = DB::table('categories')->where('category_parent', $edit->product_category)->get();

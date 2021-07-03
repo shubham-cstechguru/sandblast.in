@@ -1,4 +1,4 @@
-@php
+{{-- @php
 	$site = DB::table('settings')->first();
 
 	function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE) {
@@ -67,13 +67,11 @@
 	}
 	$info 			= ip_info();
 	$country_code 	= !empty($info['country_code']) ? $info['country_code'] : 'IN';
-@endphp
+@endphp --}}
 
-@include('frontend.common.header')
 
-<div class="text-center">
+<div class="text-center" style="margin: 5% 0;">
     <h3>404 | Error</h3>
     <p>Page you're looking for is not found. The link may be broken or removed.</p>
 </div>
 
-@include('frontend.common.footer')

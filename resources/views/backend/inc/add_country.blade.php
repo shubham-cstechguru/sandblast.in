@@ -8,7 +8,7 @@
 				<!-- inner part -->
 				<div class="row">
 					<div class="col-sm-12">
-						<h3 class="pb-2"> Cities</h3>
+						<h3 class="pb-2"> Countries</h3>
 						<div class="divider"></div>
 					</div>
 				</div>
@@ -40,13 +40,13 @@
 									<h5>Basic Information</h5>
 									<div class="divider"></div>
 									<div class="form-group">
-										<label>City Name *</label>
-										<input type="text" name="record[city_name]" value="{{ @$edit->city_name }}" placeholder="City Name" class="form-control">
+										<label>Country Name *</label>
+										<input type="text" name="record[country_name]" value="{{ @$edit->country_name }}" placeholder="Country Name" class="form-control">
 									</div>
 
 									<div class="form-group">
-										<label>City Short Name *</label>
-										<input type="text" name="record[city_short_name]" value="{{ @$edit->city_short_name }}" placeholder="City Short Name" class="form-control">
+										<label>Country Short Name *</label>
+										<input type="text" name="record[country_short_name]" value="{{ @$edit->country_short_name }}" placeholder="Country Short Name" class="form-control">
 									</div>
 
 								</div>
@@ -91,15 +91,15 @@
 											<tr>
 												<td>
 													<label class="animated-checkbox">
-														<input type="checkbox" name="check[]" class="check" value="{{ $rec->city_id }}">
+														<input type="checkbox" name="check[]" class="check" value="{{ $rec->country_id }}">
 														<span></span>
 													</label>
 												</td>
 												<td>{{ ++$sn }}</td>
-												<td>{{ $rec->city_name }}</td>
-												<td>{{ $rec->city_short_name }}</td>
+												<td>{{ $rec->country_name }}</td>
+												<td>{{ $rec->country_short_name }}</td>
 												<td>
-													<a href="{{ url('rt-admin/city/'.$rec->city_id) }}" title="Edit" class="text-success">
+													<a href="{{ url('rt-admin/country/'.$rec->country_id) }}" title="Edit" class="text-success">
 														<i class="icon-pencil"></i>
 													</a>
 												</td>

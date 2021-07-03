@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Routing\Controller as BaseController;
@@ -8,8 +9,10 @@ use App\Model\OrderModel as Order;
 use DB;
 use Hash;
 
-class Orders extends BaseController {
-    public function index( Request $request, $id = NULL ) {
+class Orders extends BaseController
+{
+    public function index(Request $request, $id = NULL)
+    {
 
         $product_no = $request->input('products');
         $offset  = !empty($product_no) ? $product_no - 1 : 0;
@@ -26,25 +29,25 @@ class Orders extends BaseController {
 
         $records   = $query->paginate(20);
 
-        if($request->isMethod('post')) {
+        if ($request->isMethod('post')) {
             $post = $request->input();
 
             // dd($post);
 
-            if(!empty($post['check']) && !empty($post['order_status'])) {
+            if (!empty($post['check']) && !empty($post['order_status'])) {
                 Order::whereIn('order_id', $post['check'])->update(['order_status' => $post['order_status']]);
                 return redirect()->back()->with('success', 'Order status changed');
             }
-
         }
 
 
-    	$page 	= "orders";
-    	$data 	= compact('page','records', 'offset', 'search');
-    	return view('backend/layout', $data);
+        $page     = "orders";
+        $data     = compact('page', 'records', 'offset', 'search');
+        return view('backend/layout', $data);
     }
 
-    public function view( Request $request, $id = NULL ) {
+    public function view(Request $request, $id = NULL)
+    {
         $q     = new Query();
         $input = $request->input();
 
@@ -55,21 +58,35 @@ class Orders extends BaseController {
         return view('backend/layout', $data);
     }
 
-    public function shiprocket_shipment( Request $request, $id = NULL ) {
+    public function changestatus($id)
+    {
+        $order = Order::findorFail($id);
+        if ($order->order_status == "pending") {
+            $order->order_status = "complete";
+            $order->update();
+        } elseif ($order->order_status == "complete") {
+            $order->order_status = "pending";
+            $order->update();
+        }
+        return redirect()->back();
+    }
+
+    public function shiprocket_shipment(Request $request, $id = NULL)
+    {
         $input = $request->input();
 
         $record    =   DB::table('orders as order')
-                        ->leftJoin('users as user', 'order.order_uid', '=', 'user.user_id')
-                        ->leftJoin('coupons AS c', 'order.order_coupon', '=', 'c.coupon_code')
-                        ->where('order_id', $id)->first();
+            ->leftJoin('users as user', 'order.order_uid', '=', 'user.user_id')
+            ->leftJoin('coupons AS c', 'order.order_coupon', '=', 'c.coupon_code')
+            ->where('order_id', $id)->first();
 
         $ship    =   DB::table('order_products as op')
-                        ->where('op.opro_oid', $id)
-                        ->join('products as p', 'op.opro_pid', '=', 'p.product_id')
-                        ->get();
+            ->where('op.opro_oid', $id)
+            ->join('products as p', 'op.opro_pid', '=', 'p.product_id')
+            ->get();
 
-        $billing 	= unserialize( html_entity_decode( $record->order_billing ) );
-        $shipping 	= unserialize( html_entity_decode( $record->order_shipping ) );
+        $billing     = unserialize(html_entity_decode($record->order_billing));
+        $shipping     = unserialize(html_entity_decode($record->order_shipping));
 
 
         // Create Shipment - Ship Rocket
@@ -80,7 +97,7 @@ class Orders extends BaseController {
         ];
         $response = Query::exe_post_curl("{$api_base}/v1/external/auth/login", $arr);
 
-        if(!empty( $response->token )) :
+        if (!empty($response->token)) :
             $token    = $response->token;
 
             $headers  = [
@@ -88,8 +105,8 @@ class Orders extends BaseController {
             ];
             $order_items = [];
 
-            if(!$ship->isEmpty()) {
-                foreach($ship as $p) :
+            if (!$ship->isEmpty()) {
+                foreach ($ship as $p) :
                     $order_items[] = [
                         'name'          => $p->product_name,
                         'sku'           => $p->product_code,
@@ -109,28 +126,28 @@ class Orders extends BaseController {
             $billingNameArr[1] = !empty($billingNameArr[1])   ? $billingNameArr[1] : "";
             $shippingNameArr[1] = !empty($shippingNameArr[1]) ? $shippingNameArr[1] : "";
 
-            if(!empty($billing['fname'])) {
+            if (!empty($billing['fname'])) {
                 $billingNameArr[0] = $billing['fname'];
                 $billingNameArr[1] = !empty($billing['lname']) ? $billing['lname'] : "";
             }
 
-            if(!empty($shipping['fname'])) {
+            if (!empty($shipping['fname'])) {
                 $shippingNameArr[0] = $shipping['fname'];
                 $shippingNameArr[1] = !empty($shipping['lname']) ? $shipping['lname'] : "";
             }
 
             $billingAddr1 = $billing['address1'];
             $billingAddr2 = $billing['address2'];
-            if(empty($billing['address2'])) {
-                $billingAddr2 = substr( $billingAddr1, 80, 160 );
-                $billingAddr1 = substr( $billingAddr1, 0, 80 );
+            if (empty($billing['address2'])) {
+                $billingAddr2 = substr($billingAddr1, 80, 160);
+                $billingAddr1 = substr($billingAddr1, 0, 80);
             }
 
             $shippingAddr1 = $shipping['address1'];
             $shippingAddr2 = $shipping['address2'];
-            if(empty($billing['address2'])) {
-                $shippingAddr2 = substr( $shippingAddr1, 80, 160 );
-                $shippingAddr1 = substr( $shippingAddr1, 0, 80 );
+            if (empty($billing['address2'])) {
+                $shippingAddr2 = substr($shippingAddr1, 80, 160);
+                $shippingAddr1 = substr($shippingAddr1, 0, 80);
             }
 
             $arr = [
@@ -179,7 +196,7 @@ class Orders extends BaseController {
             print_r($response);
         endif;
 
-        if(!empty($response->status_code) && $response->status_code == 1) {
+        if (!empty($response->status_code) && $response->status_code == 1) {
             return redirect()->back()->with('success', "Shipment created successfully.");
         }
     }

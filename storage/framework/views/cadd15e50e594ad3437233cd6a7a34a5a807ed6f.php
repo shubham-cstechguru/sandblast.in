@@ -8,19 +8,19 @@
 				<!-- inner part -->
 				<div class="row">
 					<div class="col-sm-12">
-						<h3 class="pb-2"> Cities</h3>
+						<h3 class="pb-2"> Countries</h3>
 						<div class="divider"></div>
 					</div>
 				</div>
 				<div class="setting">
 					<form>
-						@csrf
+						<?php echo csrf_field(); ?>
 						<div class="row">
 							<div class="col-sm-12">
 								<form>
 									<div class="search-box form-group product">
 
-										<input type="text" value="{{ @$search['name'] }}" class="form-control" name="search[name]" placeholder="Search . . .">
+										<input type="text" value="<?php echo e(@$search['name']); ?>" class="form-control" name="search[name]" placeholder="Search . . .">
 										<input type="submit" class="form-control btn btn-primary" name="" value="Search">
 									</div>
 								</form>
@@ -30,30 +30,31 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<form method="post" enctype="multipart/form-data">
-								@csrf
-								@if (\Session::has('success'))
+								<?php echo csrf_field(); ?>
+								<?php if(\Session::has('success')): ?>
 								<div class="alert alert-success">
-									{!! \Session::get('success') !!}
+									<?php echo \Session::get('success'); ?>
+
 								</div>
-								@endif
+								<?php endif; ?>
 								<div class="category">
 									<h5>Basic Information</h5>
 									<div class="divider"></div>
 									<div class="form-group">
-										<label>City Name *</label>
-										<input type="text" name="record[city_name]" value="{{ @$edit->city_name }}" placeholder="City Name" class="form-control">
+										<label>Country Name *</label>
+										<input type="text" name="record[country_name]" value="<?php echo e(@$edit->country_name); ?>" placeholder="Country Name" class="form-control">
 									</div>
 
 									<div class="form-group">
-										<label>City Short Name *</label>
-										<input type="text" name="record[city_short_name]" value="{{ @$edit->city_short_name }}" placeholder="City Short Name" class="form-control">
+										<label>Country Short Name *</label>
+										<input type="text" name="record[country_short_name]" value="<?php echo e(@$edit->country_short_name); ?>" placeholder="Country Short Name" class="form-control">
 									</div>
 
 								</div>
 
 								<div class="category mt-3">
 									<div class="form-group">
-										<input type="submit" value=" @if(!empty($edit)) Update @else Save @endif" class="form-control btn btn-primary">
+										<input type="submit" value=" <?php if(!empty($edit)): ?> Update <?php else: ?> Save <?php endif; ?>" class="form-control btn btn-primary">
 									</div>
 								</div>
 							</form>
@@ -61,13 +62,13 @@
 						</div>
 						<div class="col-sm-8">
 							<form method="post" class="">
-								@csrf
+								<?php echo csrf_field(); ?>
 								<div class="category-list">
 									<div class="heading">
-										<h5>{{ $records->count() }} record(s) found</h5><a href="" class="icon-trash-o"></a>
+										<h5><?php echo e($records->count()); ?> record(s) found</h5><a href="" class="icon-trash-o"></a>
 									</div>
 									<div class="divider"></div>
-									@if(!$records->isEmpty())
+									<?php if(!$records->isEmpty()): ?>
 									<table class="table table-bordered">
 										<thead>
 											<tr>
@@ -84,35 +85,35 @@
 											</tr>
 										</thead>
 										<tbody>
-											@php
+											<?php
 											$sn = 0;
-											@endphp
-											@foreach($records as $rec)
+											?>
+											<?php $__currentLoopData = $records; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rec): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 											<tr>
 												<td>
 													<label class="animated-checkbox">
-														<input type="checkbox" name="check[]" class="check" value="{{ $rec->city_id }}">
+														<input type="checkbox" name="check[]" class="check" value="<?php echo e($rec->country_id); ?>">
 														<span></span>
 													</label>
 												</td>
-												<td>{{ ++$sn }}</td>
-												<td>{{ $rec->city_name }}</td>
-												<td>{{ $rec->city_short_name }}</td>
+												<td><?php echo e(++$sn); ?></td>
+												<td><?php echo e($rec->country_name); ?></td>
+												<td><?php echo e($rec->country_short_name); ?></td>
 												<td>
-													<a href="{{ url('rt-admin/city/'.$rec->city_id) }}" title="Edit" class="text-success">
+													<a href="<?php echo e(url('rt-admin/country/'.$rec->country_id)); ?>" title="Edit" class="text-success">
 														<i class="icon-pencil"></i>
 													</a>
 												</td>
 											</tr>
-											@endforeach
+											<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 										</tbody>
 									</table>
-									@else
+									<?php else: ?>
 									<div class="alert alert-danger text-center">
 										<i class="icon-thumb_down_alt"></i> No records found.
 									</div>
-									@endif
-									<div>{{ $records->links() }}</div>
+									<?php endif; ?>
+									<div><?php echo e($records->links()); ?></div>
 								</div>
 							</form>
 						</div>
@@ -122,4 +123,4 @@
 			</div>
 		</div>
 	</section>
-</div>
+</div><?php /**PATH D:\work\asb\web work\sandblast.in\resources\views/backend/inc/add_country.blade.php ENDPATH**/ ?>

@@ -60,12 +60,19 @@ class ProductController extends BaseController
         // $mcat_name = ucwords( strtolower($mcat_name) );
 
         $category = Category::where('category_is_deleted', 'N')->where('category_slug', 'LIKE', $cat)->get()->toArray();
-        // dd($category);
-        $meta        = [
-            'title'         => $category[0]['seo_title'],
-            'keywords'      => $category[0]['seo_keyword'],
-            'description'   => $category[0]['seo_description']
-        ];
+        if (!empty($category)) {
+            $meta        = [
+                'title'         => $category[0]['seo_title'],
+                'keywords'      => $category[0]['seo_keyword'],
+                'description'   => $category[0]['seo_description']
+            ];
+        } else {
+            $meta = [
+                'title'         => '',
+                'keywords'      => '',
+                'description'   => ''
+            ];
+        }
         // dd($category);
         $title     = 'Products';
 
