@@ -59,9 +59,11 @@ b, strong {
 }
 
 .main-navbar li {
-    padding: 36px 15px;
+    padding: 36px 1.4%;
     text-transform: uppercase;
     position: relative;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .main-navbar li:last-child {

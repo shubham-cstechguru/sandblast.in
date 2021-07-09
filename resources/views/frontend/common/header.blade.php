@@ -130,7 +130,7 @@ $fav = $title[0]->setting_favicon;
                                 @if(!empty($mc->scats->count()))
                                 <ul>
                                     @foreach($mc->scats as $sc)
-                                    <li><a style="  overflow: hidden;  max-width: 25ch;  text-overflow: ellipsis;  white-space: nowrap;" href="{{ url($mc->category_slug.'/'.$sc->category_slug) }}">{{ $sc->category_name }}</a></li>
+                                    <li><a style="  overflow: hidden;  max-width: 45ch;  text-overflow: ellipsis;  white-space: nowrap;" href="{{ url($mc->category_slug.'/'.$sc->category_slug) }}">{{ $sc->category_name }}</a></li>
                                     @endforeach
                                 </ul>
                                 @endif

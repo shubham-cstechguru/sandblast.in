@@ -137,7 +137,7 @@ $fav = $title[0]->setting_favicon;
                                 <?php if(!empty($mc->scats->count())): ?>
                                 <ul>
                                     <?php $__currentLoopData = $mc->scats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a style="  overflow: hidden;  max-width: 25ch;  text-overflow: ellipsis;  white-space: nowrap;" href="<?php echo e(url($mc->category_slug.'/'.$sc->category_slug)); ?>"><?php echo e($sc->category_name); ?></a></li>
+                                    <li><a style="  overflow: hidden;  max-width: 45ch;  text-overflow: ellipsis;  white-space: nowrap;" href="<?php echo e(url($mc->category_slug.'/'.$sc->category_slug)); ?>"><?php echo e($sc->category_name); ?></a></li>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                                 <?php endif; ?>

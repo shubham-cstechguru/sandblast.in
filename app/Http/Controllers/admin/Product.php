@@ -75,11 +75,11 @@ class Product extends BaseController {
     public function add( Request $request, $id = NULL ) {
         $q      = new Query();
         session()->forget('pro_price');
+        // dd($request);
 
         $edit = $specs = $subcategories = $gallary = array();
         if(!empty($id)) {
             $edit   = ProductModel::find($id);
-            $specs  = $edit->product_specification;
 
             if(!empty($edit->product_category)) {
                 $subcategories = DB::table('categories')->where('category_parent', $edit->product_category)->get();
@@ -127,21 +127,22 @@ class Product extends BaseController {
         }
 
         $input  = $request->input('record');
-
         $category = DB::table('categories')
-                    ->where('category_parent', '0')
-                    ->where('category_is_deleted', 'N')
-                    ->get();
-
+        ->where('category_parent', '0')
+        ->where('category_is_deleted', 'N')
+        ->get();
+        
         if ($request->isMethod('post')) {
             if(empty($input['product_slug'])) $input['product_slug'] = "DEFAULT";
-
+            
             $input = array_filter( $input );
             if(empty($id)) {
-                $id = ProductModel::insertGetId( $input );
+                $id = ProductModel::insertGetId( $request->input('record') );
                 $mess = "Data inserted.";
             } else {
-                ProductModel::where('product_id', $id)->update( $input );
+                // dd($request->input('record'));
+                // dd($input);
+                ProductModel::where('product_id', $id)->update( $request->input('record') );
                 $mess = "Data updated";
                 ProductModel::whereRaw('1=1')->update(['product_is_read' => 1]);
             }
