@@ -9,7 +9,7 @@ $fav = $title[0]->setting_favicon;
 @endphp
 
 <!DOCTYPE html lang="en">
-
+<html lang="en">
 <head>
     <base href="{{ url('/').'/' }}">
     <meta charset="utf-8">

@@ -48,25 +48,22 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
                         <div class="carousel-inner">
                             <a class="lightbox carousel-item active" data-fancybox="gallery" href="{{ url('imgs/product/'
                           .$record->product_image) }}">
-                                <img class="xzoom x-img lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" id="xzoom-default" data-src="{{ url('imgs/product/'
-                              .$record->product_image) }}" />
+                                <img class="xzoom x-img lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" id="xzoom-default" data-src="{{ url('imgs/product/'.$record->product_image) }}"  alt="{{ $record->product_name }}"/>
                             </a>
                             @foreach($gall as $images)
                             <a class="lightbox carousel-item" data-fancybox="gallery" href="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image) }}" data-fancybox="gallery">
-                                <img class="xzoom x-im lazy-load" src="{{ url('imgs/ajax-loader.gif') }}"  data-src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image) }}">
+                                <img class="xzoom x-im lazy-load" src="{{ url('imgs/ajax-loader.gif') }}"  data-src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image) }}" alt="{{ $record->product_name }}">
                             </a>
                             @endforeach
                         </div>
                         <!-- Indicators -->
                         <div class="xzoom-thumbs carousel-indicators clearfix owl-carousel owl-carousel3 owl-theme">
-                            <div data-target="#demo2" data-slide-to="0" class="active item"><img class="xzoom-gallery lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" data-src="{{ url('imgs/product/'.$record->product_image_thumb) }}" xpreview="{{ url
-                                      ('imgs/product/'.$record->product_image_thumb) }}" title="">
+                            <div data-target="#demo2" data-slide-to="0" class="active item"><img class="xzoom-gallery lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" data-src="{{ url('imgs/product/'.$record->product_image_thumb) }}" xpreview="{{ url('imgs/product/'.$record->product_image_thumb) }}" title="{{ $record->product_name }}" alt="{{ $record->product_name }}">
                             </div>
                             @php $i = 0; @endphp
                             @foreach($gall as $images)
                             @php $i++; @endphp
-                            <div data-target="#demo2" data-slide-to="{{ $i }}" class="item"><img class="xzoom-gallery lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" data-src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb) }}" xpreview="{{ url
-                                     ('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb) }}" title="">
+                            <div data-target="#demo2" data-slide-to="{{ $i }}" class="item"><img class="xzoom-gallery lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" data-src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb) }}" xpreview="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb) }}" title="{{ $record->product_name }}" alt="{{ $record->product_name }}">
                             </div>
                             @endforeach
                         </div>

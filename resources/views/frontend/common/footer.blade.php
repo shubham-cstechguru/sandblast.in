@@ -6,24 +6,21 @@ $title = DB::table('settings')->get();
 $name = $title[0]->setting_title;
 @endphp
 
-<div class="foot-c py-3">
-    <div class="container city_handle">
+<footer class="bg-dark py-4">
+<div class="container city_handle">
         <ul class="list-unstyled breadcrumb p-0 mx-0" style="background: none;">
             @foreach($cities as $c)
-            <li class="breadcrumb-item mr-2"><a href="city/{{$c['city_slug']}}"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i>{{$c['city_name']}}</a></li>
+            <li class="mr-2"><a href="city/{{$c['city_slug']}}"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i>{{$c['city_name']}}</a></li>
             @endforeach
         </ul>
     </div>
     <div class="container city_handle">
         <ul class="list-unstyled breadcrumb p-0 mx-0" style="background: none; line-height: 32px;">
             @foreach($countries as $c)
-            <li class="breadcrumb-item mr-2"><a href="country/{{$c['country_slug']}}"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i>{{$c['country_name']}}</a></li>
+            <li class="mr-2"><a href="country/{{$c['country_slug']}}"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i>{{$c['country_name']}}</a></li>
             @endforeach
         </ul>
     </div>
-</div>
-<footer class="bg-dark py-4">
-
 
     <div class="container">
         <div class="row">

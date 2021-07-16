@@ -6,24 +6,21 @@ $title = DB::table('settings')->get();
 $name = $title[0]->setting_title;
 ?>
 
-<div class="foot-c py-3">
-    <div class="container city_handle">
+<footer class="bg-dark py-4">
+<div class="container city_handle">
         <ul class="list-unstyled breadcrumb p-0 mx-0" style="background: none;">
             <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <li class="breadcrumb-item mr-2"><a href="city/<?php echo e($c['city_slug']); ?>"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i><?php echo e($c['city_name']); ?></a></li>
+            <li class="mr-2"><a href="city/<?php echo e($c['city_slug']); ?>"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i><?php echo e($c['city_name']); ?></a></li>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>
     </div>
     <div class="container city_handle">
         <ul class="list-unstyled breadcrumb p-0 mx-0" style="background: none; line-height: 32px;">
             <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <li class="breadcrumb-item mr-2"><a href="country/<?php echo e($c['country_slug']); ?>"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i><?php echo e($c['country_name']); ?></a></li>
+            <li class="mr-2"><a href="country/<?php echo e($c['country_slug']); ?>"><i class="icon-location mr-1" style="font-size: 10px;" aria-hidden="true"></i><?php echo e($c['country_name']); ?></a></li>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>
     </div>
-</div>
-<footer class="bg-dark py-4">
-
 
     <div class="container">
         <div class="row">

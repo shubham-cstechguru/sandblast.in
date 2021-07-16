@@ -110,23 +110,23 @@
 <section id="home_content">
     <div class="container pt-2">
         <div class="card text-justify">
-            <div class="card-body m-0 p-0">
+            <div class="card-body m-0 p-3>
                 <h1 class="mt-0"> Sand Blasting Machine</h1>
-                Airo Shot blasting machine manufacturers are specialize in Manufacturing of Sand Blating Machine and Shot Blasting machine at affordable price. Shot Blasting machine manufacturers are customized and slandered type portable shot blasting Equipments which are used to clean the surface. Sand blasting machine manufacturers provide Portable Sand Blasting Machine with various type portable blasting equipment like Blast Hopper, Blast Rooms, Blast Cabinet etc. Airo Shot blasting manufacture wide range of portable shot blasting machine / sand blasting machine for various applications to meet the requirements of different sectors. We also manufacture vibratory finishing shot blasting machine, sand blasting chambers and automated sand & shot blasting machine.
+                Sand Blast manufacturers are specialize in Manufacturing of Sand Blating Machine and <a href="https://www.sandblast.in/product/shot-blasting-machine-1">Shot Blasting machine</a> at affordable price. Shot Blasting machine manufacturers are customized and slandered type portable shot blasting Equipments which are used to clean the surface. Sand blasting machine manufacturers provide Portable Sand Blasting Machine with various type portable blasting equipment like Blast Hopper, Blast Rooms, Blast Cabinet etc. Sand Blast manufacture wide range of portable shot blasting machine / sand blasting machine for various applications to meet the requirements of different sectors. We also manufacture vibratory finishing shot blasting machine, sand blasting chambers and automated sand & shot blasting machine.
 
                 Sand blasting is a method used to clean, strengthen (peen) or polish metal and remove old paints. It's also called "Sand blasting graffiti removal machine". Shot blasting machine is used in almost every industry. In pneumatically operated machines, the media is accelerated by compressed air and is projected by nozzles/guns on the component to be blasted. Blasting can be dry blasting or wet blasting. The blasting task determines the choice of the abrasive media. Sand blasting machine is used in almost every industry that uses metal, including aerospace, automotive, construction, foundry, shipbuilding, rail, and many others.
                 <ul class="p-0" style="list-style: inside disc;">
                     <li><a href="product/portable-sand-blasting-machine">Sand Blasting Machine Manufacturers</a> - Our teams consistent efforts and dedication enable us to carve a niche as a most trustworthy manufacturer and supplier of Sand Blasting Machine.</li>
                     <li>Buy Sand Blasting Machine - There are many different types of sand blasting machines such as Portable Sand Blasting Machine, Automatic Sand Blast, Sand Blast Cabinet, Tumblast and many more for sale.</li>
                     <li>Exporter, Suppler & Manufacturer of Heavy duty sandblasters, industrial sand blasting machine for automotive / metal / commercial usage and sale quality machines at competitive price.</li>
-                    <li>Portable Shot blasting machine manufacturers - Apply the unique Process to custom design and build each grit blasting system to meet the customer's Procise application needs. Shot blasting machine price also depend on size, used material, and purpose. Mainly, Shot blasting machine price varies according to size and material.</li>
+                    <li>Portable Shot blasting machine manufacturers - Apply the unique Process to custom design and build each grit blasting system to meet the customer's Procise application needs. Shot blasting machine price also depend on size, used material, and purpose. Mainly, <strong>Shot blasting machine price</strong> varies according to size and material.</li>
                     <li>Sand blasting machine manufacturers, Distributor of abrasive blast machines, blast hoses, couplings, media valves, breathing air systems, nozzles, R/C systems etc.</li>
                 </ul>
                 <h2 style="font-size: 20px;">
                     Shot Blasting Machine Manufacturers in India
                 </h2>
 
-                We have been working in the sand blasting industry for the last 12 years. Sand blasting machine price depends on various factors. Get the sand blasting machine price & other information by contacting us. You can learn from our blogs how to make sand blasting machine. And you can know how the sand blasting machine cost varies. We are providing sand blasting machine images, sand blast machine cost, sandblasting machine pdf in our blog.
+                We have been working in the shot blasting industry for the last 12 years. Shot blasting machine price depends on various factors. Get the shot blasting machine price & other information by contacting us. You can learn from our blogs how to make shot blasting machine. And you can know how the shot blasting machine cost varies. We are providing shot blasting machine images, shot blast machine cost, shotblasting machine pdf in our blog.
             </div>
         </div>
     </div>

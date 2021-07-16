@@ -48,25 +48,22 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
                         <div class="carousel-inner">
                             <a class="lightbox carousel-item active" data-fancybox="gallery" href="<?php echo e(url('imgs/product/'
                           .$record->product_image)); ?>">
-                                <img class="xzoom x-img lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" id="xzoom-default" data-src="<?php echo e(url('imgs/product/'
-                              .$record->product_image)); ?>" />
+                                <img class="xzoom x-img lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" id="xzoom-default" data-src="<?php echo e(url('imgs/product/'.$record->product_image)); ?>"  alt="<?php echo e($record->product_name); ?>"/>
                             </a>
                             <?php $__currentLoopData = $gall; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $images): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <a class="lightbox carousel-item" data-fancybox="gallery" href="<?php echo e(url('imgs/product/'.$record->product_id.'/'.$images->pimage_image)); ?>" data-fancybox="gallery">
-                                <img class="xzoom x-im lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>"  data-src="<?php echo e(url('imgs/product/'.$record->product_id.'/'.$images->pimage_image)); ?>">
+                                <img class="xzoom x-im lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>"  data-src="<?php echo e(url('imgs/product/'.$record->product_id.'/'.$images->pimage_image)); ?>" alt="<?php echo e($record->product_name); ?>">
                             </a>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                         <!-- Indicators -->
                         <div class="xzoom-thumbs carousel-indicators clearfix owl-carousel owl-carousel3 owl-theme">
-                            <div data-target="#demo2" data-slide-to="0" class="active item"><img class="xzoom-gallery lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e(url('imgs/product/'.$record->product_image_thumb)); ?>" xpreview="<?php echo e(url
-                                      ('imgs/product/'.$record->product_image_thumb)); ?>" title="">
+                            <div data-target="#demo2" data-slide-to="0" class="active item"><img class="xzoom-gallery lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e(url('imgs/product/'.$record->product_image_thumb)); ?>" xpreview="<?php echo e(url('imgs/product/'.$record->product_image_thumb)); ?>" title="<?php echo e($record->product_name); ?>" alt="<?php echo e($record->product_name); ?>">
                             </div>
                             <?php $i = 0; ?>
                             <?php $__currentLoopData = $gall; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $images): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $i++; ?>
-                            <div data-target="#demo2" data-slide-to="<?php echo e($i); ?>" class="item"><img class="xzoom-gallery lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e(url('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb)); ?>" xpreview="<?php echo e(url
-                                     ('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb)); ?>" title="">
+                            <div data-target="#demo2" data-slide-to="<?php echo e($i); ?>" class="item"><img class="xzoom-gallery lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e(url('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb)); ?>" xpreview="<?php echo e(url('imgs/product/'.$record->product_id.'/'.$images->pimage_image_thumb)); ?>" title="<?php echo e($record->product_name); ?>" alt="<?php echo e($record->product_name); ?>">
                             </div>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>

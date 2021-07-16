@@ -336,7 +336,7 @@ function cal_cbm() {
           fontsizeselect: true,
           browser_spellcheck: true,
           menubar: 'view',
-          toolbar: 'bold italic underline strikethrough | style-h1 style-h2 style-h3 | table hr superscript subscript | alignleft aligncenter alignright alignjustify bullist numlist outdent indent code | fullscreen' ,
+          toolbar: 'bold italic underline strikethrough | style-h1 style-h2 style-h3 style-h4 style-h5 style-h6 | table hr superscript subscript | alignleft aligncenter alignright alignjustify bullist numlist outdent indent code | fullscreen' ,
           // forced_root_block : 'div',
           branding: false,
           protect: [
@@ -527,7 +527,7 @@ function cal_cbm() {
         fontsizeselect: true,
         browser_spellcheck: true,
         menubar: false,
-        toolbar: 'bold italic underline strikethrough | style-h1 style-h2 style-h3 | table hr superscript subscript | alignleft aligncenter alignright alignjustify bullist numlist outdent indent code fullscreen fullpage' ,
+        toolbar: 'bold italic underline strikethrough | style-h1 style-h2 style-h3 style-h4 style-h5 style-h6 | table hr superscript subscript | alignleft aligncenter alignright alignjustify bullist numlist outdent indent code fullscreen fullpage' ,
         // forced_root_block : 'div',
         branding: false,
         protect: [
@@ -770,7 +770,7 @@ $(document).ready(function () {
         fontsizeselect: true,
         browser_spellcheck: true,
         menubar: false,
-        toolbar: 'bold italic underline strikethrough | style-h1 style-h2 style-h3 | table hr forecolor backcolor superscript subscript | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | insertfile | charmap code fullscreen' ,
+        toolbar: 'bold italic underline strikethrough | style-h1 style-h2 style-h3 style-h4 style-h5 style-h6 | table hr forecolor backcolor superscript subscript | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | insertfile | charmap code fullscreen' ,
         // forced_root_block : 'div',
         branding: false,
         protect: [
