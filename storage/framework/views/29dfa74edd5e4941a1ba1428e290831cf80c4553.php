@@ -8,12 +8,13 @@ $name = $title[0]->setting_title;
 $fav = $title[0]->setting_favicon;
 ?>
 
-<!DOCTYPE html lang="en">
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <base href="<?php echo e(url('/').'/'); ?>">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <title><?php echo e(empty($meta['title']) ? $site->setting_title : $meta['title']); ?></title>
 
@@ -104,12 +105,18 @@ $fav = $title[0]->setting_favicon;
         <div class="header-top" id="jp_header">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-7 d-none d-lg-block">
+                    <div class="col-sm-12 col-md-6 col-lg-3 d-none d-lg-block">
                         <?php if($title[0]->setting_logo): ?>
                         <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(url('imgs/'. $title[0]->setting_logo)); ?>" alt="sand blast logo"> </a>
                         <?php endif; ?>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-5 d-flex justify-content-between" style="align-items: center;">
+                    <div class="col-sm-12 col-md-12 col-lg-5 form-group search-form" style="margin-top: auto;">
+                        <input type="text" name="search" class="form-control searchinput" placeholder="Search Product">
+                        <span id="baseUrl" data-url="<?php echo e(route('ajax-search')); ?>"></span>
+                        <ul class="search-list searchlist">
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-4 d-flex justify-content-between" style="align-items: center;">
                         <a href="tel:+91<?php echo e($title[0]->setting_mobile); ?>"><i class="icon-call"></i> +91 <?php echo e($title[0]->setting_mobile); ?></a>
                         &nbsp; &nbsp;
                         <a href="mailto:<?php echo e(@$title[0]->setting_contact_email); ?>"><i class="icon-email"></i> <?php echo e($title[0]->setting_contact_email); ?> </a>
@@ -148,4 +155,5 @@ $fav = $title[0]->setting_favicon;
                 </div>
             </div>
         </div>
-    </header><?php /**PATH D:\work\asb\web work\sandblast.in\resources\views/frontend/common/header.blade.php ENDPATH**/ ?>
+    </header>
+    <?php /**PATH D:\work\asb\web work\sandblast.in\resources\views/frontend/common/header.blade.php ENDPATH**/ ?>

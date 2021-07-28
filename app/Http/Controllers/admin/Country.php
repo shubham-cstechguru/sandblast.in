@@ -73,7 +73,6 @@ class country extends BaseController
                         ->withErrors($validator->errors()->all())
                         ->withInput();
                 } else {
-                    dd($id);
                     DB::table('countries')->insert($request->record);
                     $id = DB::getPdo()->lastInsertId();
                     $mess = "Data inserted.";

@@ -48,11 +48,11 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
                         <div class="carousel-inner">
                             <a class="lightbox carousel-item active" data-fancybox="gallery" href="<?php echo e(url('imgs/product/'
                           .$record->product_image)); ?>">
-                                <img class="xzoom x-img lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" id="xzoom-default" data-src="<?php echo e(url('imgs/product/'.$record->product_image)); ?>"  alt="<?php echo e($record->product_name); ?>"/>
+                                <img class="xzoom x-img lazy-load" id="xzoom-default" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e(url('imgs/product/'.$record->product_image)); ?>"  alt="<?php echo e($record->product_name); ?>"/>
                             </a>
                             <?php $__currentLoopData = $gall; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $images): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <a class="lightbox carousel-item" data-fancybox="gallery" href="<?php echo e(url('imgs/product/'.$record->product_id.'/'.$images->pimage_image)); ?>" data-fancybox="gallery">
-                                <img class="xzoom x-im lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>"  data-src="<?php echo e(url('imgs/product/'.$record->product_id.'/'.$images->pimage_image)); ?>" alt="<?php echo e($record->product_name); ?>">
+                                <img class="xzoom x-im lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e(url('imgs/product/'.$record->product_id.'/'.$images->pimage_image)); ?>" alt="<?php echo e($record->product_name); ?>">
                             </a>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>

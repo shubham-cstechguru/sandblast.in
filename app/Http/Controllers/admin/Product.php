@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Routing\Controller as BaseController;
@@ -9,8 +10,10 @@ use App\Model\ProductPrice;
 use App\Model\CityModel as CM;
 use DB;
 
-class Product extends BaseController {
-    public function index( Request $request, $id = NULL ) {
+class Product extends BaseController
+{
+    public function index(Request $request, $id = NULL)
+    {
 
         $product_no = $request->input('products');
         // $offset  = !empty($product_no) ? $product_no - 1 : 0;
@@ -25,72 +28,73 @@ class Product extends BaseController {
         $records = ProductModel::where('product_is_deleted', 'N')->orderBy('product_id', 'DESC')->paginate(10);
         $input = $request->input();
 
-        $city= DB::table('cities')->where('city_is_deleted', 'N')->get();
-        $country= DB::table('countries')->where('country_is_deleted', 'N')->get();
+        $city = DB::table('cities')->where('city_is_deleted', 'N')->get();
+        $country = DB::table('countries')->where('country_is_deleted', 'N')->get();
         // CITY LIST
 
         if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['status'])) {
-            $status = $input['status'] == "Y" ? "N" : "Y" ;
+            $status = $input['status'] == "Y" ? "N" : "Y";
             $arr = array(
                 "product_is_visible" => $status
             );
-            ProductModel::where('product_id', $input['id'])->update( $arr );
+            ProductModel::where('product_id', $input['id'])->update($arr);
             return redirect('rt-admin/product');
         }
 
         if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['view'])) {
-            $status = $input['view'] == "Y" ? "N" : "Y" ;
+            $status = $input['view'] == "Y" ? "N" : "Y";
             $arr = array(
                 "product_is_home" => $status
             );
-            ProductModel::where('product_id', $input['id'])->update( $arr );
+            ProductModel::where('product_id', $input['id'])->update($arr);
             return redirect('rt-admin/product');
         }
 
         if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['stock'])) {
-            $status = $input['stock'] == "Y" ? "N" : "Y" ;
+            $status = $input['stock'] == "Y" ? "N" : "Y";
             $arr = array(
                 "product_in_stock" => $status
             );
-            ProductModel::where('product_id', $input['id'])->update( $arr );
+            ProductModel::where('product_id', $input['id'])->update($arr);
             return redirect('rt-admin/product');
         }
 
         if ($request->isMethod('post')) {
             $check = $request->input('check');
 
-            foreach($check as $id) {
-            	ProductModel::where('product_id', $id)->update( array('product_is_deleted' => 'Y') );
+            foreach ($check as $id) {
+                ProductModel::where('product_id', $id)->update(array('product_is_deleted' => 'Y'));
             }
             $mess = "Selected record(s) deleted successfully.";
             return redirect()->back()->with('success', $mess);
         }
 
 
-    	$page 	= "product";
-    	$data 	= compact('page','records', 'city', 'country');
-    	return view('backend/layout', $data);
+        $page     = "product";
+        $data     = compact('page', 'records', 'city', 'country');
+        return view('backend/layout', $data);
     }
 
-    public function add( Request $request, $id = NULL ) {
+    public function add(Request $request, $id = NULL)
+    {
         $q      = new Query();
         session()->forget('pro_price');
         // dd($request);
 
         $edit = $specs = $subcategories = $gallary = array();
-        if(!empty($id)) {
+        if (!empty($id)) {
             $edit   = ProductModel::find($id);
 
-            if(!empty($edit->product_category)) {
+            if (!empty($edit->product_category)) {
                 $subcategories = DB::table('categories')->where('category_parent', $edit->product_category)->get();
             }
 
             $gallary = DB::table('product_images')->where('pimage_pid', $id)->get();
 
             $prices = ProductPrice::where('price_pid', $id)->get();
-            if(!$prices->isEmpty($prices)) {
+            if (!$prices->isEmpty($prices)) {
                 $session = [];
-                foreach($prices as $price) {
+                foreach ($prices as $price) {
                     $session[] = [
                         'price_qty'             => $price->price_qty,
                         'price_unit'            => $price->price_unit,
@@ -99,25 +103,25 @@ class Product extends BaseController {
                     ];
                 }
 
-                session( ['pro_price' => $session] );
+                session(['pro_price' => $session]);
             }
         }
 
         $input  = $request->input();
-        if(!empty($input['remove_id']) && is_numeric($input['remove_id'])) {
+        if (!empty($input['remove_id']) && is_numeric($input['remove_id'])) {
             $image = DB::table('product_images')->where('pimage_id', $input['remove_id'])->first();
 
             // dd($image);
 
-            if(!empty($image->pimage_id)) {
-                if(!empty($image->pimage_image) && file_exists(public_path().'/imgs/product/'.$image->pimage_image)) {
-                    unlink(public_path().'/imgs/product/'.$edit->product_id.'/'.$image->pimage_image);
+            if (!empty($image->pimage_id)) {
+                if (!empty($image->pimage_image) && file_exists(public_path() . '/imgs/product/' . $image->pimage_image)) {
+                    unlink(public_path() . '/imgs/product/' . $edit->product_id . '/' . $image->pimage_image);
                 }
-                if(!empty($image->pimage_image_thumb) && file_exists(public_path().'/imgs/product/'.$image->pimage_image_thumb)) {
-                    unlink(public_path().'/imgs/product/'.$edit->product_id.'/'.$image->pimage_image_thumb);
+                if (!empty($image->pimage_image_thumb) && file_exists(public_path() . '/imgs/product/' . $image->pimage_image_thumb)) {
+                    unlink(public_path() . '/imgs/product/' . $edit->product_id . '/' . $image->pimage_image_thumb);
                 }
-                if(!empty($image->pimage_image_medium) && file_exists(public_path().'/imgs/product/'.$image->pimage_image_medium)) {
-                    unlink(public_path().'/imgs/product/'.$edit->product_id.'/'.$image->pimage_image_medium);
+                if (!empty($image->pimage_image_medium) && file_exists(public_path() . '/imgs/product/' . $image->pimage_image_medium)) {
+                    unlink(public_path() . '/imgs/product/' . $edit->product_id . '/' . $image->pimage_image_medium);
                 }
 
                 DB::table('product_images')->where('pimage_id', $input['remove_id'])->delete();
@@ -128,74 +132,73 @@ class Product extends BaseController {
 
         $input  = $request->input('record');
         $category = DB::table('categories')
-        ->where('category_parent', '0')
-        ->where('category_is_deleted', 'N')
-        ->get();
-        
+            ->where('category_parent', '0')
+            ->where('category_is_deleted', 'N')
+            ->get();
+
         if ($request->isMethod('post')) {
-            if(empty($input['product_slug'])) $input['product_slug'] = "DEFAULT";
-            
-            $input = array_filter( $input );
-            if(empty($id)) {
-                $id = ProductModel::insertGetId( $request->input('record') );
+            if (empty($input['product_slug'])) $input['product_slug'] = "DEFAULT";
+
+            $input = array_filter($input);
+            if (empty($id)) {
+                $id = ProductModel::insertGetId($request->input('record'));
                 $mess = "Data inserted.";
             } else {
                 // dd($request->input('record'));
                 // dd($input);
-                ProductModel::where('product_id', $id)->update( $request->input('record') );
+                ProductModel::where('product_id', $id)->update($request->input('record'));
                 $mess = "Data updated";
                 ProductModel::whereRaw('1=1')->update(['product_is_read' => 1]);
             }
 
-            if($input['product_slug'] == 'DEFAULT') {
+            if ($input['product_slug'] == 'DEFAULT') {
                 $slug = $q->create_slug($input['product_name'], "products", "product_slug", "product_id", $id);
-                ProductModel::where('product_id', $id)->update( array('product_slug' => $slug) );
-
+                ProductModel::where('product_id', $id)->update(array('product_slug' => $slug));
             }
 
             $current_session = session('pro_price');
-            if(!empty($current_session)) {
-                foreach($current_session as $cs) {
+            if (!empty($current_session)) {
+                foreach ($current_session as $cs) {
                     $cs['price_pid'] = $id;
 
-                    ProductPrice::insert( $cs );
+                    ProductPrice::insert($cs);
                 }
             }
 
             if ($request->hasFile('product_image')) {
 
                 // $imgid = DB::getPdo()->lastInsertId();
-                if(!empty($edit->product_image) && file_exists(public_path().'/imgs/product/'.$edit->product_image)) {
-                    unlink(public_path().'/imgs/product/'.$edit->product_image);
+                if (!empty($edit->product_image) && file_exists(public_path() . '/imgs/product/' . $edit->product_image)) {
+                    unlink(public_path() . '/imgs/product/' . $edit->product_image);
                 }
-                if(!empty($edit->product_image_thumb) && file_exists(public_path().'/imgs/product/'.$edit->product_image_thumb)) {
-                    unlink(public_path().'/imgs/product/'.$edit->product_image_thumb);
+                if (!empty($edit->product_image_thumb) && file_exists(public_path() . '/imgs/product/' . $edit->product_image_thumb)) {
+                    unlink(public_path() . '/imgs/product/' . $edit->product_image_thumb);
                 }
-                if(!empty($edit->product_image_medium) && file_exists(public_path().'/imgs/product/'.$edit->product_image_medium)) {
-                    unlink(public_path().'/imgs/product/'.$edit->product_image_medium);
+                if (!empty($edit->product_image_medium) && file_exists(public_path() . '/imgs/product/' . $edit->product_image_medium)) {
+                    unlink(public_path() . '/imgs/product/' . $edit->product_image_medium);
                 }
                 $image           = $request->file('product_image');
-                $name            = 'img'.$id.'.'.$image->getClientOriginalExtension();
+                $name            = 'img' . $id . '.' . $image->getClientOriginalExtension();
                 $destinationPath = 'public/imgs/product';
                 $image->move($destinationPath, $name);
-                $dir1 = public_path().'/imgs/product/';
+                $dir1 = public_path() . '/imgs/product/';
                 $dir = url('imgs/product');
 
-                $thumb = "thumb_".$id.'.'.$image->getClientOriginalExtension();
-                $q->resize_image($dir.'/'.$name, 128, 128, $dir1.'/'.$thumb);
+                $thumb = "thumb_" . $id . '.' . $image->getClientOriginalExtension();
+                $q->resize_image($dir . '/' . $name, 128, 128, $dir1 . '/' . $thumb);
 
-                $medium = "medium_".$id.'.'.$image->getClientOriginalExtension();
-                $q->resize_image($dir.'/'.$name, 512, 512, $dir1.'/'.$medium);
+                $medium = "medium_" . $id . '.' . $image->getClientOriginalExtension();
+                $q->resize_image($dir . '/' . $name, 512, 512, $dir1 . '/' . $medium);
 
-                $large = "img".$id.'.'.$image->getClientOriginalExtension();
-                $q->resize_image($dir.'/'.$name, 1024, 1024, $dir1.'/'.$large);
+                $large = "img" . $id . '.' . $image->getClientOriginalExtension();
+                $q->resize_image($dir . '/' . $name, 1024, 1024, $dir1 . '/' . $large);
 
 
-                if(!empty($edit->product_image)) {
+                if (!empty($edit->product_image)) {
                     $unique = uniqid();
-                    $large  .= "?v=".$unique;
-                    $thumb  .= "?v=".$unique;
-                    $medium .= "?v=".$unique;
+                    $large  .= "?v=" . $unique;
+                    $thumb  .= "?v=" . $unique;
+                    $medium .= "?v=" . $unique;
                 }
                 $imgArr = [
                     'product_image'          => $large,
@@ -203,20 +206,19 @@ class Product extends BaseController {
                     'product_image_medium'   => $medium
                 ];
 
-                ProductModel::where('product_id', $id)->update( $imgArr );
-
+                ProductModel::where('product_id', $id)->update($imgArr);
             }
 
             // gallary images
 
-            $dir1 = public_path().'/imgs/product/'.$id;
+            $dir1 = public_path() . '/imgs/product/' . $id;
             //
             // if(is_dir($dir1)) $q->rmdir_recursive($dir1);
 
-            $dir = url('imgs/product/'.$id.'/');
+            $dir = url('imgs/product/' . $id . '/');
 
-            if($files = $request->file('gallery_images')) {
-                foreach($files as $image){
+            if ($files = $request->file('gallery_images')) {
+                foreach ($files as $image) {
 
                     $arr = array(
                         'pimage_pid'    => $id
@@ -225,18 +227,18 @@ class Product extends BaseController {
                     DB::table('product_images')->insert($arr);
                     $imgid = DB::getPdo()->lastInsertId();
 
-                    $name  = 'GALL_'.$imgid.'.'.$image->getClientOriginalExtension();
-                    $destinationPath = 'public/imgs/product/'.$id.'/';
+                    $name  = 'GALL_' . $imgid . '.' . $image->getClientOriginalExtension();
+                    $destinationPath = 'public/imgs/product/' . $id . '/';
                     $image->move($destinationPath, $name);
 
-                    $thumb = "thumb_".$imgid.'.'.$image->getClientOriginalExtension();
-                    $q->resize_image($dir.'/'.$name, 92, 92, $dir1.'/'.$thumb);
+                    $thumb = "thumb_" . $imgid . '.' . $image->getClientOriginalExtension();
+                    $q->resize_image($dir . '/' . $name, 92, 92, $dir1 . '/' . $thumb);
 
-                    $medium = "medium_".$imgid.'.'.$image->getClientOriginalExtension();
-                    $q->resize_image($dir.'/'.$name, 600, 400, $dir1.'/'.$medium);
+                    $medium = "medium_" . $imgid . '.' . $image->getClientOriginalExtension();
+                    $q->resize_image($dir . '/' . $name, 600, 400, $dir1 . '/' . $medium);
 
-                    $large = "GALL_".$imgid.'.'.$image->getClientOriginalExtension();
-                    $q->resize_image($dir.'/'.$name, 1024, 1024, $dir1.'/'.$large);
+                    $large = "GALL_" . $imgid . '.' . $image->getClientOriginalExtension();
+                    $q->resize_image($dir . '/' . $name, 1024, 1024, $dir1 . '/' . $large);
 
                     $imgArr = [
                         'pimage_image'          => $large,
@@ -244,14 +246,60 @@ class Product extends BaseController {
                         'pimage_image_medium'   => $medium
                     ];
 
-                    DB::table('product_images')->where('pimage_id', $imgid)->update( $imgArr );
+                    DB::table('product_images')->where('pimage_id', $imgid)->update($imgArr);
                 }
             }
             return redirect('rt-admin/product');
         }
 
         $page   = "add_product";
-        $data   = compact('page', 'edit', 'specs', 'category','subcategories', 'gallary', 'id');
+        $data   = compact('page', 'edit', 'specs', 'category', 'subcategories', 'gallary', 'id');
         return view('backend/layout', $data);
+    }
+
+    public function search(Request $request)
+    {
+        if (!empty(request('search'))) {
+            $records = ProductModel::where('product_name', 'LIKE', '%' . $request->search . '%')->orderBy('product_id', 'DESC')->paginate(10);
+            $input = $request->input();
+
+            $city = DB::table('cities')->where('city_is_deleted', 'N')->get();
+            $country = DB::table('countries')->where('country_is_deleted', 'N')->get();
+            // CITY LIST
+
+            if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['status'])) {
+                $status = $input['status'] == "Y" ? "N" : "Y";
+                $arr = array(
+                    "product_is_visible" => $status
+                );
+                ProductModel::where('product_id', $input['id'])->update($arr);
+                return redirect('rt-admin/product');
+            }
+
+            if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['view'])) {
+                $status = $input['view'] == "Y" ? "N" : "Y";
+                $arr = array(
+                    "product_is_home" => $status
+                );
+                ProductModel::where('product_id', $input['id'])->update($arr);
+                return redirect('rt-admin/product');
+            }
+
+            if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['stock'])) {
+                $status = $input['stock'] == "Y" ? "N" : "Y";
+                $arr = array(
+                    "product_in_stock" => $status
+                );
+                ProductModel::where('product_id', $input['id'])->update($arr);
+                return redirect('rt-admin/product');
+            }
+
+
+            $page     = "product";
+            $data     = compact('page', 'records', 'city', 'country');
+            return view('backend/layout', $data);
+        } else {
+            return redirect(url('rt-admin/product'));
+        }
     }
 }

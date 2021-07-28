@@ -67,6 +67,11 @@
 			<h3 class="pb-2">View Products</h3>
 			<div class="divider"></div>
 			<div class="content-part">
+				<form action="<?php echo e(route('productsearch')); ?>" method="POST" class="d-flex mb-2" style="width: 32%;">
+					<?php echo csrf_field(); ?>
+					<input type="text" name="search" class="form-control" id="exampleInputsearch" value="<?php echo e(request('search')); ?>" placeholder="Search Product">
+					<button type="submit" class="btn btn-primary">Search</button>
+				</form>
 				<?php if(\Session::has('success')): ?>
 				<div class="alert alert-success">
 					<?php echo \Session::get('success'); ?></li>
@@ -75,10 +80,14 @@
 				<form method="post">
 					<?php echo csrf_field(); ?>
 					<div class="product">
-						<div class="heading">
-							<h5><?php echo e($records->count()); ?> record(s) found</h5>
+						<div class="heading mb-3">
+							<div class="mr-2">
+								<h5><?php echo e($records->count()); ?> record(s) found</h5>
+							</div>
 							<?php if(!$records->isEmpty()): ?>
-							<a href="" class="icon-trash-o"></a>
+							<div class="ml-4">
+								<a href="" class="icon-trash-o"></a>
+							</div>
 							<?php endif; ?>
 						</div>
 						<div class="divider"></div>

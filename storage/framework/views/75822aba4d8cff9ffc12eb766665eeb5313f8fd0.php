@@ -9,7 +9,7 @@
         <div class="carousel-inner">
             <?php $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="carousel-item <?php if($k == 0): ?> active <?php endif; ?>" style="text-align: center;">
-                <img data-src="<?php echo e(url('imgs/sliders/'.$s->slider_image)); ?>" class="lazy-load" alt="<?php echo e($s->slider_title); ?>">
+                <img src="" data-src="<?php echo e(url('imgs/sliders/'.$s->slider_image)); ?>" class="lazy-load" alt="<?php echo e($s->slider_title); ?>">
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
@@ -37,13 +37,13 @@
                     <div class="category-img">
                         <a href="<?php echo e(url($c->category_slug)); ?>" title="<?php echo e($c->category_name); ?>">
                             <?php if($c->category_image!=''): ?>
-                            <img data-src="<?php echo e(url('imgs/category/'.$c->category_image)); ?>" class="lazy-load"  alt="<?php echo e($c->category_name); ?>">
+                            <img src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e(url('imgs/category/'.$c->category_image)); ?>" class="lazy-load"  alt="<?php echo e($c->category_name); ?>">
                             <?php else: ?>
-                            <img data-src="<?php echo e(url('imgs/sandblast.jpg')); ?>" class="lazy-load"  alt="<?php echo e($c->category_name); ?>">
+                            <img src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e(url('imgs/sandblast.jpg')); ?>" class="lazy-load"  alt="<?php echo e($c->category_name); ?>">
                             <?php endif; ?>
                         </a>
                     </div>
-                    <div class="category-title" style="">
+                    <div class="category-title">
                         <a href="<?php echo e(url($c->category_slug)); ?>" title="<?php echo e($c->category_name); ?>">
                             <?php echo e($c->category_name); ?>
 
@@ -73,8 +73,8 @@
             $image = url( 'imgs/product/'.$p->product_image_medium );
             ?>
             <div class="item">
-                <div class="card product-block">
-                    <a href="<?php echo e(url('product/'.$p->product_slug)); ?>"><img data-src="<?php echo e($image); ?>" class="lazy-load"  alt="<?php echo e($p->product_name); ?>" title="<?php echo e($p->product_name); ?>" class="main-image lazy"></a>
+                <div class="card product-block product-card">
+                    <a href="<?php echo e(url('product/'.$p->product_slug)); ?>"><img src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e($image); ?>" class="main-image lazy lazy-load"  alt="<?php echo e($p->product_name); ?>" title="<?php echo e($p->product_name); ?>"></a>
                     <div class="card-body">
                         <h5 class="card-title" style="text-align: center;"><a href="<?php echo e(url('product/'.$p->product_slug)); ?>" title="<?php echo e($p->product_name); ?>"><?php echo e($p->product_name); ?></a></h5>
 
@@ -82,9 +82,9 @@
                             <div class="row">
                                 <div class="col-sm-5 mb-2" style="display: none;">
                                     <div class="product-qty">
-                                        <div class="qty-input">
+                                        <!-- <div class="qty-input">
                                             <input type="text" name="" value="1" min="1" readonly disabled>
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="qty-action">
                                             <button type="button" class="plus"><i class="icon-plus"></i> </button>
                                             <button type="button" class="minus"><i class="icon-minus"></i></button>
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="col-sm-12 mb-2">
                                     <button type="button" class="btn btn-block btn-primary enquiry_btn" data-pid="<?php echo e($p->product_id); ?>">
-                                        Enquiry Now</i>
+                                        Enquiry Now
                                     </button>
                                 </div>
                             </div>
@@ -110,8 +110,8 @@
 <section id="home_content">
     <div class="container pt-2">
         <div class="card text-justify">
-            <div class="card-body m-0 p-3>
-                <h1 class="mt-0"> Sand Blasting Machine</h1>
+            <div class="card-body m-0 p-3">
+                <h1 class="mt-0">Sand Blasting Machine</h1>
                 Sand Blast manufacturers are specialize in Manufacturing of Sand Blating Machine and <a href="https://www.sandblast.in/product/shot-blasting-machine-1">Shot Blasting machine</a> at affordable price. Shot Blasting machine manufacturers are customized and slandered type portable shot blasting Equipments which are used to clean the surface. Sand blasting machine manufacturers provide Portable Sand Blasting Machine with various type portable blasting equipment like Blast Hopper, Blast Rooms, Blast Cabinet etc. Sand Blast manufacture wide range of portable shot blasting machine / sand blasting machine for various applications to meet the requirements of different sectors. We also manufacture vibratory finishing shot blasting machine, sand blasting chambers and automated sand & shot blasting machine.
 
                 Sand blasting is a method used to clean, strengthen (peen) or polish metal and remove old paints. It's also called "Sand blasting graffiti removal machine". Shot blasting machine is used in almost every industry. In pneumatically operated machines, the media is accelerated by compressed air and is projected by nozzles/guns on the component to be blasted. Blasting can be dry blasting or wet blasting. The blasting task determines the choice of the abrasive media. Sand blasting machine is used in almost every industry that uses metal, including aerospace, automotive, construction, foundry, shipbuilding, rail, and many others.

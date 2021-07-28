@@ -15,8 +15,8 @@
                 $image = url( 'imgs/product/'.$p->product_image_medium );
             ?>
             <div class="col-sm-3 col-6">
-                <div class="card product-block">
-                    <a href="<?php echo e(url($p->product_slug)); ?>"><img data-src="<?php echo e($image); ?>" class="lazy-load" src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" alt="<?php echo e($p->product_name); ?>" title="<?php echo e($p->product_name); ?>" class="main-image lazy"></a>
+                <div class="card product-block product-card">
+                    <a href="<?php echo e(url($p->product_slug)); ?>"><img src="<?php echo e(url('imgs/ajax-loader.gif')); ?>" data-src="<?php echo e($image); ?>" class="main-image lazy lazy-load" alt="<?php echo e($p->product_name); ?>" title="<?php echo e($p->product_name); ?>"></a>
                     <div class="card-body">
                         <h2 class="card-title" style="text-align: center;"><a href="<?php echo e(url($p->product_slug)); ?>" title="<?php echo e($p->product_name); ?>"><?php echo e($p->product_name); ?></a></h2>
 

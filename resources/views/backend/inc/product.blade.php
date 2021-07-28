@@ -67,6 +67,11 @@
 			<h3 class="pb-2">View Products</h3>
 			<div class="divider"></div>
 			<div class="content-part">
+				<form action="{{ route('productsearch') }}" method="POST" class="d-flex mb-2" style="width: 32%;">
+					@csrf
+					<input type="text" name="search" class="form-control" id="exampleInputsearch" value="{{ request('search') }}" placeholder="Search Product">
+					<button type="submit" class="btn btn-primary">Search</button>
+				</form>
 				@if (\Session::has('success'))
 				<div class="alert alert-success">
 					{!! \Session::get('success') !!}</li>
@@ -75,10 +80,14 @@
 				<form method="post">
 					@csrf
 					<div class="product">
-						<div class="heading">
-							<h5>{{ $records->count() }} record(s) found</h5>
+						<div class="heading mb-3">
+							<div class="mr-2">
+								<h5>{{ $records->count() }} record(s) found</h5>
+							</div>
 							@if(!$records->isEmpty())
-							<a href="" class="icon-trash-o"></a>
+							<div class="ml-4">
+								<a href="" class="icon-trash-o"></a>
+							</div>
 							@endif
 						</div>
 						<div class="divider"></div>

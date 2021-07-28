@@ -48,11 +48,11 @@ return number_format($number / $divisor, $precision) . $shorthand; } $cart_sessi
                         <div class="carousel-inner">
                             <a class="lightbox carousel-item active" data-fancybox="gallery" href="{{ url('imgs/product/'
                           .$record->product_image) }}">
-                                <img class="xzoom x-img lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" id="xzoom-default" data-src="{{ url('imgs/product/'.$record->product_image) }}"  alt="{{ $record->product_name }}"/>
+                                <img class="xzoom x-img lazy-load" id="xzoom-default" src="{{ url('imgs/ajax-loader.gif') }}" data-src="{{ url('imgs/product/'.$record->product_image) }}"  alt="{{ $record->product_name }}"/>
                             </a>
                             @foreach($gall as $images)
                             <a class="lightbox carousel-item" data-fancybox="gallery" href="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image) }}" data-fancybox="gallery">
-                                <img class="xzoom x-im lazy-load" src="{{ url('imgs/ajax-loader.gif') }}"  data-src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image) }}" alt="{{ $record->product_name }}">
+                                <img class="xzoom x-im lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" data-src="{{ url('imgs/product/'.$record->product_id.'/'.$images->pimage_image) }}" alt="{{ $record->product_name }}">
                             </a>
                             @endforeach
                         </div>

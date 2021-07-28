@@ -8,12 +8,13 @@ $name = $title[0]->setting_title;
 $fav = $title[0]->setting_favicon;
 @endphp
 
-<!DOCTYPE html lang="en">
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <base href="{{ url('/').'/' }}">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ empty($meta['title']) ? $site->setting_title : $meta['title'] }}</title>
 
@@ -97,12 +98,18 @@ $fav = $title[0]->setting_favicon;
         <div class="header-top" id="jp_header">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-7 d-none d-lg-block">
+                    <div class="col-sm-12 col-md-6 col-lg-3 d-none d-lg-block">
                         @if($title[0]->setting_logo)
                         <a href="{{ url('/') }}"><img src="{{ url('imgs/'. $title[0]->setting_logo) }}" alt="sand blast logo"> </a>
                         @endif
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-5 d-flex justify-content-between" style="align-items: center;">
+                    <div class="col-sm-12 col-md-12 col-lg-5 form-group search-form" style="margin-top: auto;">
+                        <input type="text" name="search" class="form-control searchinput" placeholder="Search Product">
+                        <span id="baseUrl" data-url="{{ route('ajax-search') }}"></span>
+                        <ul class="search-list searchlist">
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-4 d-flex justify-content-between" style="align-items: center;">
                         <a href="tel:+91{{ $title[0]->setting_mobile }}"><i class="icon-call"></i> +91 {{ $title[0]->setting_mobile }}</a>
                         &nbsp; &nbsp;
                         <a href="mailto:{{ @$title[0]->setting_contact_email }}"><i class="icon-email"></i> {{ $title[0]->setting_contact_email }} </a>
@@ -142,3 +149,4 @@ $fav = $title[0]->setting_favicon;
             </div>
         </div>
     </header>
+    

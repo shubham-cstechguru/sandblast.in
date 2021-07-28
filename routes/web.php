@@ -30,6 +30,7 @@ Route::any('rt-admin/slider/add/{nom?}', 'admin\Slider@add');
 // Route::any('rt-admin/collection/add/{nom?}', 'admin\Collection@add');
 
 Route::any('rt-admin/product', 'admin\Product@index');
+Route::any('rt-admin/product/search', 'admin\Product@search')->name('productsearch');
 Route::any('rt-admin/product/add/{nom?}', 'admin\Product@add');
 Route::any('rt-admin/product-city', 'admin\ProductCity@index');
 Route::any('rt-admin/product-country', 'admin\ProductCountry@index');
@@ -116,6 +117,7 @@ Route::post('ajax/update', 'Ajax@update');
 // Route::post('ajax/wishlist', 'Ajax@wishlist');
 Route::post('ajax/like', 'Ajax@like');
 Route::post('ajax/{action}', 'Ajax@index');
+Route::post('search', 'Ajax@search')->name('ajax-search');
 
 Route::any('thank-you/{order_id}', 'ThanksController@index');
 Route::any('callback', 'ThanksController@callback');

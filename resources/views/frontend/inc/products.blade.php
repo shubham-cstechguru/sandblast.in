@@ -14,8 +14,8 @@
                 $image = url( 'imgs/product/'.$p->product_image_medium );
             @endphp
             <div class="col-sm-3 col-6">
-                <div class="card product-block">
-                    <a href="{{ url($p->product_slug) }}"><img data-src="{{ $image }}" class="lazy-load" src="{{ url('imgs/ajax-loader.gif') }}" alt="{{ $p->product_name }}" title="{{ $p->product_name }}" class="main-image lazy"></a>
+                <div class="card product-block product-card">
+                    <a href="{{ url($p->product_slug) }}"><img src="{{ url('imgs/ajax-loader.gif') }}" data-src="{{ $image }}" class="main-image lazy lazy-load" alt="{{ $p->product_name }}" title="{{ $p->product_name }}"></a>
                     <div class="card-body">
                         <h2 class="card-title" style="text-align: center;"><a href="{{ url($p->product_slug) }}" title="{{ $p->product_name }}">{{ $p->product_name }}</a></h2>
 

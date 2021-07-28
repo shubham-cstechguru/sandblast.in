@@ -77,6 +77,26 @@ $(document).ready(function () {
         }
     });
 
+    $(".search-form").on('keyup change', function (e) {
+        e.preventDefault();
+        
+        var url = $('#baseUrl').data('url');
+        var search = $('.searchinput').val();
+    
+        $.ajax({
+          url: url,
+          type: "POST",
+          headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+          data: {
+            search: search,
+          },
+          success: function (response) {
+            $(".searchlist").html('');
+            $(".searchlist").append(response);
+          },
+        });
+      });
+
     $('.refresh-captcha').on('click', function () {
         $('.captcha-image').attr('src', baseurl + '/captcha-code/?' + Date.now());
     });
