@@ -1,6 +1,6 @@
 @php
-$cities = \App\Model\CityModel::select('city_slug', 'city_name')->get()->toArray();
-$countries = \App\Model\CountryModel::select('country_slug','country_name')->get()->toArray();
+$cities = \App\Model\CityModel::select('city_slug', 'city_name')->where('city_is_deleted', 'N')->get()->toArray();
+$countries = \App\Model\CountryModel::select('country_slug','country_name')->where('country_is_deleted', 'N')->get()->toArray();
 $y = date('Y');
 $title = DB::table('settings')->get();
 $name = $title[0]->setting_title;

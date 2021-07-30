@@ -103,7 +103,7 @@ $fav = $title[0]->setting_favicon;
                         <a href="{{ url('/') }}"><img src="{{ url('imgs/'. $title[0]->setting_logo) }}" alt="sand blast logo"> </a>
                         @endif
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-5 form-group search-form" style="margin-top: auto;">
+                    <div class="col-sm-12 col-md-12 col-lg-5 form-group search-form p-0" style="margin-top: auto;">
                         <input type="text" name="search" class="form-control searchinput" placeholder="Search Product">
                         <span id="baseUrl" data-url="{{ route('ajax-search') }}"></span>
                         <ul class="search-list searchlist">
