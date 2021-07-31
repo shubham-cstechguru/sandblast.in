@@ -25,6 +25,10 @@ class category extends BaseController {
                 );
                 DB::table('categories')->whereIn('category_id', $check)->update( $arr );
 
+                foreach ($check as $delc) {
+                    $categories = DB::table('categories')->where('category_id', $delc)->delete();
+                }
+
                 return redirect()->back()->with('success', 'Selected record(s) deleted.');
             }
         }

@@ -111,10 +111,9 @@ $fav = $title[0]->setting_favicon;
                         <?php endif; ?>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-5 form-group search-form p-0" style="margin-top: auto;">
-                        <input type="text" name="search" class="form-control searchinput" placeholder="Search Product">
+                        <input type="text" name="search" class="form-control searchinput" id="searchinginput" placeholder="Search Product">
                         <span id="baseUrl" data-url="<?php echo e(route('ajax-search')); ?>"></span>
-                        <ul class="search-list searchlist">
-                        </ul>
+                        <div id="serachresult"></div>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-4 d-flex justify-content-between" style="align-items: center;">
                         <a href="tel:+91<?php echo e($title[0]->setting_mobile); ?>"><i class="icon-call"></i> +91 <?php echo e($title[0]->setting_mobile); ?></a>

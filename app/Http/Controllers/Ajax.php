@@ -76,7 +76,10 @@ class Ajax extends BaseController
         } else {
             $li = '';
         }
-
+        if($li!='')
+         $li = '<ul class="search-list searchlist">'.$li.'</ul>';
+         else
+         $li='';
         return response()->json($li, 200);
     }
 }

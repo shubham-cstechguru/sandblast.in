@@ -15,17 +15,22 @@ class Product extends BaseController
     public function index(Request $request, $id = NULL)
     {
 
-        $product_no = $request->input('products');
-        // $offset  = !empty($product_no) ? $product_no - 1 : 0;
-        // $records = DB::table('products as p')
-        //             ->join('categories as cat', 'p.product_category', '=', 'cat.category_id')
-        //             ->leftJoin('categories as subcat', 'p.product_subcategory', '=', 'subcat.category_id')
-        //             ->select('p.*', 'cat.category_name as mcategory', 'subcat.category_name as scategory')
-        //             ->where('product_is_deleted','N')
-        //             ->orderBy('product_id', 'desc')
-        //             ->paginate(10);
+        if (!empty(request('search'))) {
+            $records = ProductModel::where('product_name', 'LIKE', '%' . $request->search . '%')->orderBy('product_id', 'DESC')->paginate(10);
+            $records->appends(['search' => $request->search]);
+        } else {
+            $product_no = $request->input('products');
+            // $offset  = !empty($product_no) ? $product_no - 1 : 0;
+            // $records = DB::table('products as p')
+            //             ->join('categories as cat', 'p.product_category', '=', 'cat.category_id')
+            //             ->leftJoin('categories as subcat', 'p.product_subcategory', '=', 'subcat.category_id')
+            //             ->select('p.*', 'cat.category_name as mcategory', 'subcat.category_name as scategory')
+            //             ->where('product_is_deleted','N')
+            //             ->orderBy('product_id', 'desc')
+            //             ->paginate(10);
 
-        $records = ProductModel::where('product_is_deleted', 'N')->orderBy('product_id', 'DESC')->paginate(10);
+            $records = ProductModel::where('product_is_deleted', 'N')->orderBy('product_id', 'DESC')->paginate(10);
+        }
         $input = $request->input();
 
         $city = DB::table('cities')->where('city_is_deleted', 'N')->get();
@@ -65,6 +70,11 @@ class Product extends BaseController
             foreach ($check as $id) {
                 ProductModel::where('product_id', $id)->update(array('product_is_deleted' => 'Y'));
             }
+
+            foreach ($check as $id) {
+                $product = ProductModel::where('product_id', $id)->delete();
+            }
+
             $mess = "Selected record(s) deleted successfully.";
             return redirect()->back()->with('success', $mess);
         }
@@ -257,49 +267,50 @@ class Product extends BaseController
         return view('backend/layout', $data);
     }
 
-    public function search(Request $request)
-    {
-        if (!empty(request('search'))) {
-            $records = ProductModel::where('product_name', 'LIKE', '%' . $request->search . '%')->orderBy('product_id', 'DESC')->paginate(10);
-            $input = $request->input();
+    // public function search(Request $request)
+    // {
+    //     if (!empty(request('search'))) {
+    //         $records = ProductModel::where('product_name', 'LIKE', '%' . $request->search . '%')->orderBy('product_id', 'DESC')->paginate(10);
+    //         $records = $records->appends(array('product_name' => $request->search));
+    //         $input = $request->input();
 
-            $city = DB::table('cities')->where('city_is_deleted', 'N')->get();
-            $country = DB::table('countries')->where('country_is_deleted', 'N')->get();
-            // CITY LIST
+    //         $city = DB::table('cities')->where('city_is_deleted', 'N')->get();
+    //         $country = DB::table('countries')->where('country_is_deleted', 'N')->get();
+    //         // CITY LIST
 
-            if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['status'])) {
-                $status = $input['status'] == "Y" ? "N" : "Y";
-                $arr = array(
-                    "product_is_visible" => $status
-                );
-                ProductModel::where('product_id', $input['id'])->update($arr);
-                return redirect('rt-admin/product');
-            }
+    //         if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['status'])) {
+    //             $status = $input['status'] == "Y" ? "N" : "Y";
+    //             $arr = array(
+    //                 "product_is_visible" => $status
+    //             );
+    //             ProductModel::where('product_id', $input['id'])->update($arr);
+    //             return redirect('rt-admin/product');
+    //         }
 
-            if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['view'])) {
-                $status = $input['view'] == "Y" ? "N" : "Y";
-                $arr = array(
-                    "product_is_home" => $status
-                );
-                ProductModel::where('product_id', $input['id'])->update($arr);
-                return redirect('rt-admin/product');
-            }
+    //         if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['view'])) {
+    //             $status = $input['view'] == "Y" ? "N" : "Y";
+    //             $arr = array(
+    //                 "product_is_home" => $status
+    //             );
+    //             ProductModel::where('product_id', $input['id'])->update($arr);
+    //             return redirect('rt-admin/product');
+    //         }
 
-            if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['stock'])) {
-                $status = $input['stock'] == "Y" ? "N" : "Y";
-                $arr = array(
-                    "product_in_stock" => $status
-                );
-                ProductModel::where('product_id', $input['id'])->update($arr);
-                return redirect('rt-admin/product');
-            }
+    //         if (!empty($input['id']) && is_numeric($input['id']) && !empty($input['stock'])) {
+    //             $status = $input['stock'] == "Y" ? "N" : "Y";
+    //             $arr = array(
+    //                 "product_in_stock" => $status
+    //             );
+    //             ProductModel::where('product_id', $input['id'])->update($arr);
+    //             return redirect('rt-admin/product');
+    //         }
 
 
-            $page     = "product";
-            $data     = compact('page', 'records', 'city', 'country');
-            return view('backend/layout', $data);
-        } else {
-            return redirect(url('rt-admin/product'));
-        }
-    }
+    //         $page     = "product";
+    //         $data     = compact('page', 'records', 'city', 'country');
+    //         return view('backend/layout', $data);
+    //     } else {
+    //         return redirect(url('rt-admin/product'));
+    //     }
+    // }
 }

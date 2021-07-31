@@ -16,7 +16,7 @@
 					@foreach($city as $ct)
 					<div class="form-check form-check-inline" style="background:#ccc;padding: 10px;">
 						<input class="form-check-input sub_chk" name="ids[]" type="checkbox" data-id="{{$ct->city_id}}" value="{{$ct->city_id}}">
-						<label class="form-check-label" for="city{{$ct->city_id}}">{{$ct->city_name}}</label>
+						<label class="form-check-label" for="city{{$ct->city_id}}">{{@$ct->city_name}}</label>
 					</div>
 					@endforeach
 					@endif
@@ -47,7 +47,7 @@
 					@foreach($country as $ct)
 					<div class="form-check form-check-inline" style="background:#ccc;padding: 10px;">
 						<input class="form-check-input sub_chk" name="ids[]" type="checkbox" data-id="{{$ct->country_id}}" value="{{$ct->country_id}}">
-						<label class="form-check-label" for="country{{$ct->country_id}}">{{$ct->country_name}}</label>
+						<label class="form-check-label" for="country{{$ct->country_id}}">{{@$ct->country_name}}</label>
 					</div>
 					@endforeach
 					@endif
@@ -67,8 +67,7 @@
 			<h3 class="pb-2">View Products</h3>
 			<div class="divider"></div>
 			<div class="content-part">
-				<form action="{{ route('productsearch') }}" method="POST" class="d-flex mb-2" style="width: 32%;">
-					@csrf
+				<form class="d-flex mb-2" style="width: 32%;">
 					<input type="text" name="search" class="form-control" id="exampleInputsearch" value="{{ request('search') }}" placeholder="Search Product">
 					<button type="submit" class="btn btn-primary">Search</button>
 				</form>
@@ -161,7 +160,7 @@
 														Add City
 													</a>
 													@else
-													{{$rec->city->city_name}}
+													{{@$rec->city->city_name}}
 													@endif
 												</div>
 												<div class="col-6">
@@ -170,7 +169,7 @@
 														Add Country
 													</a>
 													@else
-													{{$rec->country->country_name}}
+													{{@$rec->country->country_name}}
 													@endif
 												</div>
 											</div>

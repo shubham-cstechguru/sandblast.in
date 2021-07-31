@@ -101,7 +101,7 @@
 								<td>{{ $rec->city_name }}</td>
 								<td>{{ $rec->city_short_name }}</td>
 								<td class="icon-cent">
-									<a href="{{ url('rt-admin/location/cities/'.$rec->city_id) }}" class="pencil"><i class="icon-pencil" title="Edit"></i></a>
+									<a href="{{ url('rt-admin/city/'.$rec->city_id) }}" class="pencil"><i class="icon-pencil" title="Edit"></i></a>
 								</td>
 			               	</tr>
 			               @endforeach

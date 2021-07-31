@@ -30,7 +30,7 @@ Route::any('rt-admin/slider/add/{nom?}', 'admin\Slider@add');
 // Route::any('rt-admin/collection/add/{nom?}', 'admin\Collection@add');
 
 Route::any('rt-admin/product', 'admin\Product@index');
-Route::any('rt-admin/product/search', 'admin\Product@search')->name('productsearch');
+// Route::any('rt-admin/product/search', 'admin\Product@search')->name('productsearch');
 Route::any('rt-admin/product/add/{nom?}', 'admin\Product@add');
 Route::any('rt-admin/product-city', 'admin\ProductCity@index');
 Route::any('rt-admin/product-country', 'admin\ProductCountry@index');
@@ -132,6 +132,6 @@ Route::get('country/{country}', 'ProductController@index');
 Route::get('city/{city}/{slug}', 'ProductController@single');
 Route::get('{mcategory}/{scategory?}', 'ProductController@index');
 
-Route::any('rt-admin/location/countries/{slug?}', 'admin\Location@country');
-Route::any('rt-admin/location/states/{slug?}', 'admin\Location@states');
-Route::any('rt-admin/location/cities/{slug?}', 'admin\Location@cities');
+// Route::any('rt-admin/location/countries/{slug?}', 'admin\Location@country');
+// Route::any('rt-admin/location/states/{slug?}', 'admin\Location@states');
+// Route::any('rt-admin/location/cities/{slug?}', 'admin\Location@cities');

@@ -81,7 +81,7 @@
 								<td>{{ $rec->country_name }}</td>
 								<td>{{ $rec->country_short_name }}</td>
 								<td class="icon-cent">
-									<a href="{{ url('rt-admin/location/countries/'.$rec->country_id) }}" class="pencil"><i class="icon-pencil" title="Edit"></i></a>
+									<a href="{{ url('rt-admin/country/'.$rec->country_id) }}" class="pencil"><i class="icon-pencil" title="Edit"></i></a>
 								</td>
 			               	</tr>
 			               @endforeach

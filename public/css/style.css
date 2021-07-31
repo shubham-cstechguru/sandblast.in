@@ -47,6 +47,10 @@ b, strong {
     transition: all 5s ease-out;
 }
 
+.searchresult {
+    z-index: 68;
+}
+
 .search-list {
     top: calc(1.5em + .75rem + 11px);
     position: absolute;
@@ -57,20 +61,30 @@ b, strong {
     list-style: none;
     text-align: left;
     padding-left: 0 !important;
+    padding-top: 25px;
+    border: none;
     font-size: 14px;
+    position: absolute;
+    top: 25px;
+    z-index: 16;
 }
+
 .searchinput {
     height: calc(1.5em + .75rem + 11px);
     border-radius: 2.25rem;
+    z-index: 999999;
+    position: relative;
+    border: none;
 }
 
 .search-list li {
     color: #05c5b6;
-    background: #f9f9f9;
+    background: #ffffff;
     text-decoration: none;
     list-style: none;
     transition: 0.5s ease;
     padding: 9px 11px;
+    border: none;
 }
 
 .search-list li a {
@@ -78,6 +92,10 @@ b, strong {
     background: #f9f9f9;
     text-decoration: none;
     transition: 0.5s ease;
+}
+
+.search-form .form-control:focus {
+    box-shadow: none !important;
 }
 
 .search-list li:hover {
@@ -133,6 +151,10 @@ b, strong {
     line-height: 45px !important;
     font-size: 17px !important;
     letter-spacing: 0px !important;
+}
+
+.product-desc a {
+    color: #05c5b6;
 }
 
 table {

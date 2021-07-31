@@ -27,6 +27,10 @@ class country extends BaseController
                 );
                 DB::table('countries')->whereIn('country_id', $check)->update($arr);
 
+                foreach ($check as $delc) {
+                    $country = DB::table('countries')->where('country_id', $delc)->delete();
+                }
+
                 return redirect()->back()->with('success', 'Selected record(s) deleted.');
             }
         }
@@ -47,71 +51,81 @@ class country extends BaseController
         $records = $query->paginate(10);
         if ($request->isMethod('post')) {
 
-            $input = $request->all();
+            $input = $request->input('record');
 
             if (empty($id)) {
-                $rules = [
-                    'record.country_name' => 'required|string|unique:mysql.countries,country_name|max:255',
-                    'record.country_short_name' => 'required|string|max:5',
-                ];
+                DB::table('countries')->insert($input);
 
-                $messages = [
-                    'record.country_name.required'   => 'Country Name must be required.',
-                    'record.country_name.string'   => 'Country Name contain only alphabets.',
-                    'record.country_name.unique'   => 'Country Name must be unique.',
-                    'record.country_name.max'   => 'Country Name must be max of 255 charcters.',
-                    'record.country_short_name.required'   => 'Country Shortname Name must be required.',
-                    'record.country_short_name.string'   => 'Country Shortname Name contain only alphabets.',
-                    'record.country_short_name.max'   => 'Country Shortname Name must be max of 5 charcters.',
-                ];
+                // $input = $request->all();
 
-                $validator  = Validator::make($input, $rules, $messages);
+                // if (empty($id)) {
+                //     $rules = [
+                //         'record.country_name' => 'required|string|unique:mysql.countries,country_name|max:255',
+                //         'record.country_short_name' => 'required|string|max:5',
+                //     ];
+
+                //     $messages = [
+                //         'record.country_name.required'   => 'Country Name must be required.',
+                //         'record.country_name.string'   => 'Country Name contain only alphabets.',
+                //         'record.country_name.unique'   => 'Country Name must be unique.',
+                //         'record.country_name.max'   => 'Country Name must be max of 255 charcters.',
+                //         'record.country_short_name.required'   => 'Country Shortname Name must be required.',
+                //         'record.country_short_name.string'   => 'Country Shortname Name contain only alphabets.',
+                //         'record.country_short_name.max'   => 'Country Shortname Name must be max of 5 charcters.',
+                //     ];
+
+                //     $validator  = Validator::make($input, $rules, $messages);
 
 
-                if ($validator->fails()) {
-                    return redirect(url('rt-admin/country'))
-                        ->withErrors($validator->errors()->all())
-                        ->withInput();
-                } else {
-                    DB::table('countries')->insert($request->record);
-                    $id = DB::getPdo()->lastInsertId();
-                    $mess = "Data inserted.";
-                    $slug = $q->create_slug($input['record']['country_name'], "countries", "country_slug", "country_id", $id);
-                    DB::table('countries')->where('country_id', $id)->update(array('country_slug' => $slug));
-                    return redirect(url('rt-admin/country'))->with('success', 'Country successfully added.');
-                }
+                //     if ($validator->fails()) {
+                //         return redirect(url('rt-admin/country'))
+                //             ->withErrors($validator->errors()->all())
+                //             ->withInput();
+                //     } else {
+                //         DB::table('countries')->insert($request->record);
+                $id = DB::getPdo()->lastInsertId();
+                $mess = "Data inserted.";
+                //         $slug = $q->create_slug($input['record']['country_name'], "countries", "country_slug", "country_id", $id);
+                //         DB::table('countries')->where('country_id', $id)->update(array('country_slug' => $slug));
+                //         return redirect(url('rt-admin/country'))->with('success', 'Country successfully added.');
+                //     }
+                // } else {
+                //     $rules = [
+                //         'record.country_name' => 'required|string|max:255|unique:countries,country_name,' . $id,
+                //         'record.country_short_name' => 'required|string|max:5'
+                //     ];
+
+
+                //     $messages = [
+                //         'record.country_name.required'   => 'Country Name must be required.',
+                //         'record.country_name.string'   => 'Country Name contain only alphabets.',
+                //         'record.country_name.unique'   => 'Country Name must be unique.',
+                //         'record.country_name.max'   => 'Country Name must be max of 255 charcters.',
+                //         'record.country_short_name.required'   => 'Country Shortname Name must be required.',
+                //         'record.country_short_name.string'   => 'Country Shortname Name contain only alphabets.',
+                //         'record.country_short_name.max'   => 'Country Shortname Name must be max of 5 charcters.',
+                //     ];
+
+                //     $validator  = Validator::make($input, $rules, $messages);
+
+                //     if ($validator->fails()) {
+                //         return redirect(url('rt-admin/country'))
+                //             ->withErrors($validator->errors()->all())
+                //             ->withInput();
             } else {
-                $rules = [
-                    'record.country_name' => 'required|string|max:255|unique:countries,country_name,' . $id,
-                    'record.country_short_name' => 'required|string|max:5'
-                ];
 
-
-                $messages = [
-                    'record.country_name.required'   => 'Country Name must be required.',
-                    'record.country_name.string'   => 'Country Name contain only alphabets.',
-                    'record.country_name.unique'   => 'Country Name must be unique.',
-                    'record.country_name.max'   => 'Country Name must be max of 255 charcters.',
-                    'record.country_short_name.required'   => 'Country Shortname Name must be required.',
-                    'record.country_short_name.string'   => 'Country Shortname Name contain only alphabets.',
-                    'record.country_short_name.max'   => 'Country Shortname Name must be max of 5 charcters.',
-                ];
-
-                $validator  = Validator::make($input, $rules, $messages);
-
-                if ($validator->fails()) {
-                    return redirect(url('rt-admin/country'))
-                        ->withErrors($validator->errors()->all())
-                        ->withInput();
-                } else {
-
-                    DB::table('countries')->where('countries.country_id', $id)->update($request->record);
-                    $mess = "Data updated";
-                    $slug = $q->create_slug($input['record']['country_name'], "countries", "country_slug", "country_id", $id);
-                    DB::table('countries')->where('country_id', $id)->update(array('country_slug' => $slug));
-                    return redirect(url('rt-admin/country'))->with('success', 'Country successfully Update.');
-                }
+                DB::table('countries')->where('country_id', $id)->update($input);
+                // DB::table('countries')->where('countries.country_id', $id)->update($request->record);
+                $mess = "Data updated";
+                // $slug = $q->create_slug($input['record']['country_name'], "countries", "country_slug", "country_id", $id);
+                // DB::table('countries')->where('country_id', $id)->update(array('country_slug' => $slug));
+                // return redirect(url('rt-admin/country'))->with('success', 'Country successfully Update.');
             }
+
+            $slug = $q->create_slug($input['country_name'], "countries", "country_slug", "country_id", $id);
+            DB::table('countries')->where('country_id', $id)->update(array('country_slug' => $slug));
+            return redirect()->back()->with('success', $mess);
+            // }
         }
 
 

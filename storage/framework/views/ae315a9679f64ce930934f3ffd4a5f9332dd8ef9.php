@@ -16,7 +16,7 @@
 					<?php $__currentLoopData = $city; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 					<div class="form-check form-check-inline" style="background:#ccc;padding: 10px;">
 						<input class="form-check-input sub_chk" name="ids[]" type="checkbox" data-id="<?php echo e($ct->city_id); ?>" value="<?php echo e($ct->city_id); ?>">
-						<label class="form-check-label" for="city<?php echo e($ct->city_id); ?>"><?php echo e($ct->city_name); ?></label>
+						<label class="form-check-label" for="city<?php echo e($ct->city_id); ?>"><?php echo e(@$ct->city_name); ?></label>
 					</div>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					<?php endif; ?>
@@ -47,7 +47,7 @@
 					<?php $__currentLoopData = $country; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 					<div class="form-check form-check-inline" style="background:#ccc;padding: 10px;">
 						<input class="form-check-input sub_chk" name="ids[]" type="checkbox" data-id="<?php echo e($ct->country_id); ?>" value="<?php echo e($ct->country_id); ?>">
-						<label class="form-check-label" for="country<?php echo e($ct->country_id); ?>"><?php echo e($ct->country_name); ?></label>
+						<label class="form-check-label" for="country<?php echo e($ct->country_id); ?>"><?php echo e(@$ct->country_name); ?></label>
 					</div>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					<?php endif; ?>
@@ -67,8 +67,7 @@
 			<h3 class="pb-2">View Products</h3>
 			<div class="divider"></div>
 			<div class="content-part">
-				<form action="<?php echo e(route('productsearch')); ?>" method="POST" class="d-flex mb-2" style="width: 32%;">
-					<?php echo csrf_field(); ?>
+				<form class="d-flex mb-2" style="width: 32%;">
 					<input type="text" name="search" class="form-control" id="exampleInputsearch" value="<?php echo e(request('search')); ?>" placeholder="Search Product">
 					<button type="submit" class="btn btn-primary">Search</button>
 				</form>
@@ -165,7 +164,7 @@
 														Add City
 													</a>
 													<?php else: ?>
-													<?php echo e($rec->city->city_name); ?>
+													<?php echo e(@$rec->city->city_name); ?>
 
 													<?php endif; ?>
 												</div>
@@ -175,7 +174,7 @@
 														Add Country
 													</a>
 													<?php else: ?>
-													<?php echo e($rec->country->country_name); ?>
+													<?php echo e(@$rec->country->country_name); ?>
 
 													<?php endif; ?>
 												</div>

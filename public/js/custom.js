@@ -91,8 +91,8 @@ $(document).ready(function () {
             search: search,
           },
           success: function (response) {
-            $(".searchlist").html('');
-            $(".searchlist").append(response);
+            $("#searchlist").html('');
+            $("#serachresult").html(response);
           },
         });
       });
