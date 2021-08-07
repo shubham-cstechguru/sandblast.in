@@ -65,10 +65,10 @@ class Ajax extends BaseController
     {
         if (!empty(request('search'))) {
             if ($request->search != '') {
-                $products = ProductModel::where('product_is_deleted', 'N')->where('product_name', 'LIKE', '%' . $request->search . '%')->paginate(5);
+                $products = ProductModel::where('product_is_deleted', 'N')->where('product_name', 'LIKE', $request->search . '%')->orderBy('product_name', 'asc')->paginate(7);
                 $li = '';
                 foreach ($products as $product) {
-                    $li .= '<li class="list-group-item"><a style="  overflow: hidden;  max-width: 45ch;  text-overflow: ellipsis;  white-space: nowrap;" href="' . url('product/'.$product->product_slug) . '">' . $product->product_name . '</a></li>';
+                    $li .= '<li class="list-group-item"><a style="  overflow: hidden;  max-width: 45ch;  text-overflow: ellipsis;  white-space: nowrap;" href="' . url('product/' . $product->product_slug) . '">' . $product->product_name . '</a></li>';
                 }
             } else {
                 $li = '';
@@ -76,10 +76,10 @@ class Ajax extends BaseController
         } else {
             $li = '';
         }
-        if($li!='')
-         $li = '<ul class="search-list searchlist">'.$li.'</ul>';
-         else
-         $li='';
+        if ($li != '')
+            $li = '<ul class="search-list searchlist">' . $li . '</ul>';
+        else
+            $li = '';
         return response()->json($li, 200);
     }
 }

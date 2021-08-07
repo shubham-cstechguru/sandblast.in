@@ -93,6 +93,7 @@ $(document).ready(function () {
           success: function (response) {
             $("#searchlist").html('');
             $("#serachresult").html(response);
+            $('.searchinput').css("border", "1px solid #ced4da");
           },
         });
       });
